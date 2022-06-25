@@ -480,7 +480,7 @@ swap_off()
             using_swap_now=0
         else
             red "Failed to close swap!"
-            green "Welcome to bug report(https://github.com/kirin10000/Xray-script/issues), thank you
+            green "Welcome to bug report(https://github.com/mmsaffari/Xray-script/issues), thank you
 support"
             yellow "Press Enter to continue or Ctrl+c to exit"
             read -s
@@ -832,7 +832,7 @@ get_system_info()
     timezone="$(ls -l /etc/localtime | awk -F zoneinfo/ '{print $NF}')"
     if [[ ! -L /etc/localtime ]] || [ "$timezone" == "" ]; then
         yellow "Failed to get time zone!"
-        green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+        green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
         yellow "Press Enter to continue or Ctrl+c to exit"
         read -s
     fi
@@ -860,7 +860,7 @@ get_system_info()
     systemVersion="$(bash -c "echo $(grep '^[ '$'\t]*VERSION_ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)")"
     if [ "$(bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)")" == "" ] || [ "$systemVersion" == "" ]; then
         yellow "Failed to get system information!"
-        green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+        green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
         yellow "Press Enter to continue or Ctrl+c to exit"
         read -s
     fi
@@ -907,7 +907,7 @@ check_nginx_installed_system()
     fi
     red "Uninstall failed!"
     yellow "Please try to change the system, it is recommended to use the latest version of Ubuntu"
-    green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+    green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
     exit 1
 }
 
@@ -1505,7 +1505,7 @@ install_bbr()
                         if ! version_ge "$(dpkg --list | grep '^[ '$'\t]*ii[ '$'\t][ '$'\t]*linux-base[ '$'\t]' | awk '{print $3}')" "4.5ubuntu1~16.04.1"; then
                             if ! $debian_package_manager update; then
                                 red "Error in $debian_package_manager update"
-                                green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+                                green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
                                 yellow "Press Enter to continue or Ctrl+c to exit"
                                 read -s
                             fi
@@ -1663,7 +1663,7 @@ readProtocolConfig()
     echo
     blue   " Note："
     blue   "   1. If you don't know what CDN is or you are not using CDN, please select TCP"
-    blue   "   2. gRPC and WebSocket are supported through CDN. For the difference between the two, see: https://github.com/kirin10000/Xray-script#About grpc and websocket"
+    blue   "   2. gRPC and WebSocket are supported through CDN. For the difference between the two, see: https://github.com/mmsaffari/Xray-script#About_grpc_and_websocket"
     blue   "   3. Only TCP can use XTLS, and XTLS is completely compatible with TLS"
     blue   "   4. Only VLESS can be transmitted by TCP"
     echo
@@ -1738,7 +1738,7 @@ readPretend()
         green  " 128MB <= Memory <1G is recommended to choose CloudReve"
         green  " Memory> = 1G is recommended to select NextCloud or CloudReve"
         echo
-        yellow " For details on choosing a camouflage website, see: https://github.com/mmsaffari/xray-script#FakeWebsitesDescription"
+        yellow " For details on choosing a camouflage website, see: https://github.com/mmsaffari/xray-script#Fake_websites_description"
         echo
         pretend=""
         while [[ "$pretend" != "1" && "$pretend" != "2" && "$pretend" != "3" && "$pretend" != "4" && "$pretend" != "5" ]]
@@ -1913,7 +1913,7 @@ install_php_dependence()
             $debian_package_manager -y -f --no-install-recommends install
             if ! $debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm-dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-2-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2-dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev && ! $debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm-dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2-dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev; then
                 yellow "Dependency installation failed!!"
-                green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+                green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
                 yellow "Press Enter to continue or Ctrl+c to exit"
                 read -s
             fi
@@ -1984,7 +1984,7 @@ compile_php()
     if ! make -j$cpu_thread_num; then
         swap_off
         red "php compilation failed!"
-        green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+        green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
         yellow "Until bugs are fixed, it is recommended to use the latest version of Ubuntu"
         exit 1
     fi
@@ -2007,7 +2007,7 @@ instal_php_imagick()
     if ! make -j$cpu_thread_num; then
         swap_off
         yellow "php-imagick failed to compile"
-        green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+        green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
         yellow "Until bugs are fixed, it is recommended to use the latest version of Ubuntu"
         yellow "Press Enter to continue or Ctrl+c to terminate"
         read -s
@@ -2117,7 +2117,7 @@ compile_nginx()
     if ! make -j$cpu_thread_num; then
         swap_off
         red "Nginx compilation failed!"
-        green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+        green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
         yellow "Until bugs are fixed, it is recommended to use the latest version of Ubuntu"
         exit 1
     fi
@@ -3053,7 +3053,7 @@ print_config_info()
     echo
     ask_if "Generate share link? (y/n)" && print_share_link
     echo
-    yellow "About fingerprint and alpn, see: https://github.com/kirin10000/Xray-script#AboutTLSHandshakeTLSFingerprintAndALPN"
+    yellow "About fingerprint and alpn, see: https://github.com/mmsaffari/Xray-script#About_TLS_handshake_TLS_fingerprint_and_ALPN"
     echo
     blue " To achieve Fullcone (NAT type open), the following conditions need to be met:"
     blue "    1. Make sure the client core is Xray v1.3.0+"
@@ -3950,7 +3950,7 @@ start_menu()
     tyblue "--------------------------------------Notes-----------------------------------"
     yellow " 1. This script requires a domain name that resolves to this server"
     tyblue " 2. This script takes a long time to install, it is recommended to read before installation: "
-    tyblue "    https://github.com/kirin10000/Xray-script#InstallationTimeDescription"
+    tyblue "    https://github.com/mmsaffari/Xray-script#Installation_time_description"
     green  " 3. It is recommended to use this script on a clean system (VPS console - reset system)"
     tyblue "-------------------------------------------------_----------------------------"
     echo
@@ -4073,7 +4073,7 @@ start_menu()
         install_update_xray
         green "Xray update complete!"
     elif [ $choice -eq 10 ]; then
-        ! ask_if "确定要删除吗?(y/n)" && return 0
+        ! ask_if "You sure you want to delete it?(y/n)" && return 0
         [ "$redhat_package_manager" == "yum" ] && check_important_dependence_installed "" "yum-utils"
         check_important_dependence_installed ca-certificates ca-certificates
         check_important_dependence_installed curl curl
@@ -4100,7 +4100,7 @@ start_menu()
         systemctl stop xray nginx
         [ $php_is_installed -eq 1 ] && systemctl stop php-fpm
         [ $cloudreve_is_installed -eq 1 ] && systemctl stop cloudreve
-        green "已停止！"
+        green "stopped!"
     elif [ $choice -eq 15 ]; then
         get_config_info
         print_config_info
