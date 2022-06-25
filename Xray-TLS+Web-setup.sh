@@ -71,27 +71,27 @@ xid_3=""
 
 #Functional function:
 #define several colors
-purple() #gay purple
+purple()						   #gay purple
 {
     echo -e "\\033[35;1m${*}\\033[0m"
 }
-tyblue() #天一Blue
+tyblue()                           #TY Blue
 {
     echo -e "\\033[36;1m${*}\\033[0m"
 }
-green() #Forgive green
+green()                            #Forgive green
 {
     echo -e "\\033[32;1m${*}\\033[0m"
 }
-yellow() #duck feces yellow
+yellow()                           #Duck shit yellow
 {
     echo -e "\\033[33;1m${*}\\033[0m"
 }
-red() #aunt red
+red()                              #Aunt red
 {
     echo -e "\\033[31;1m${*}\\033[0m"
 }
-blue() #blue
+blue()                             #Blue
 {
     echo -e "\\033[34;1m${*}\\033[0m"
 }
@@ -100,7 +100,7 @@ check_base_command()
 {
     hash -r
     local i
-    local temp_command_list=('bash' 'sh' 'command' 'type' 'hash' 'install' 'true' 'false' 'exit' 'echo' 'test' 'sort' 'sed' 'awk' 'grep' ' cut' 'cd' 'rm' 'cp' 'mv' 'head' 'tail' 'uname' 'tr' 'md5sum' 'cat' 'find' 'wc' 'ls' 'mktemp' 'swapon' 'swapoff' 'mkswap' 'chmod' 'chown' 'chgrp' 'export' 'tar' 'gzip' 'mkdir' 'arch' 'uniq')
+    local temp_command_list=('bash' 'sh' 'command' 'type' 'hash' 'install' 'true' 'false' 'exit' 'echo' 'test' 'sort' 'sed' 'awk' 'grep' 'cut' 'cd' 'rm' 'cp' 'mv' 'head' 'tail' 'uname' 'tr' 'md5sum' 'cat' 'find' 'wc' 'ls' 'mktemp' 'swapon' 'swapoff' 'mkswap' 'chmod' 'chown' 'chgrp' 'export' 'tar' 'gzip' 'mkdir' 'arch' 'uniq')
     for i in "${temp_command_list[@]}"
     do
         if ! command -V "${i}" > /dev/null; then
@@ -135,13 +135,13 @@ version_ge()
 #Check for script updates
 check_script_update()
 {
-    [ "$(md5sum "${BASH_SOURCE[0]}" | awk '{print $1}')" == "$(md5sum <(wget -O - "https://github.com/kirin10000/Xray-script /raw/main/Xray-TLS+Web-setup.sh") | awk '{print $1}')" ] ​​&& return 1 || return 0
+    [ "$(md5sum "${BASH_SOURCE[0]}" | awk '{print $1}')" == "$(md5sum <(wget -O - "https://github.com/mmsaffari/Xray-script/raw/main/Xray-TLS+Web-setup.sh") | awk '{print $1}')" ] && return 1 || return 0
 }
 #update script
 update_script()
 {
-    if wget -O "${BASH_SOURCE[0]}" "https://github.com/kirin10000/Xray-script/raw/main/Xray-TLS+Web-setup.sh" || wget -O "${ BASH_SOURCE[0]}" "https://github.com/kirin10000/Xray-script/raw/main/Xray-TLS+Web-setup.sh"; then
-        green "Script update complete, please rerun the script!"
+    if wget -O "${BASH_SOURCE[0]}" "https://github.com/mmsaffari/Xray-script/raw/main/Xray-TLS+Web-setup.sh" || wget -O "${BASH_SOURCE[0]}" "https://github.com/mmsaffari/Xray-script/raw/main/Xray-TLS+Web-setup.sh"; then
+                green "Script update complete, please rerun the script!"
         exit 0
     else
         red "Update script failed!"
@@ -230,12 +230,12 @@ test_important_dependence_installed()
 {
     local temp_exit_code=1
     if [ $release == "ubuntu" ] || [ $release == "debian" ] || [ $release == "deepin" ] || [ $release == "other-debian" ]; then
-        if LANG="en_US.UTF-8" LANGUAGE="en_US:en" dpkg -s "$1" 2>/dev/null | grep -qi 'status[ '$'\t]*:[ '$'\t ]*install[ '$'\t]*ok[ '$'\t]*installed[ '$'\t]*$'; then
-            if LANG="en_US.UTF-8" LANGUAGE="en_US:en" apt-mark manual "$1" | grep -qi 'set[ '$'\t]*to[ '$'\t]*manually[ ' $'\t]*installed'; then
+        if LANG="en_US.UTF-8" LANGUAGE="en_US:en" dpkg -s "$1" 2>/dev/null | grep -qi 'status[ '$'\t]*:[ '$'\t]*install[ '$'\t]*ok[ '$'\t]*installed[ '$'\t]*$'; then
+            if LANG="en_US.UTF-8" LANGUAGE="en_US:en" apt-mark manual "$1" | grep -qi 'set[ '$'\t]*to[ '$'\t]*manually[ '$'\t]*installed'; then
                 temp_exit_code=0
             else
                 red "Error installing dependencies\"$1\"!"
-                green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+                green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
                 yellow "Press Enter to continue or Ctrl+c to exit"
                 read -s
             fi
@@ -280,7 +280,7 @@ install_dependence()
             $debian_package_manager -y -f --no-install-recommends install
             if ! $debian_package_manager -y --no-install-recommends install "$@"; then
                 yellow "Dependency installation failed!!"
-                green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+                green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
                 yellow "Press Enter to continue or Ctrl+c to exit"
                 read -s
             fi
@@ -288,7 +288,7 @@ install_dependence()
     else
         if ! redhat_install "$@"; then
             yellow "Dependency installation failed!!"
-            green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+            green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
             yellow "Press Enter to continue or Ctrl+c to exit"
             read -s
         fi
@@ -310,7 +310,7 @@ install_epel()
         elif version_ge "$systemVersion" 9; then
             check_important_dependence_installed "" dnf-plugins-core
             dnf config-manager --set-enabled crb || ret=-1
-            redhat_install "https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm" "https://dl.fedoraproject.org/pub/epel/epel-next-release-latest -9.noarch.rpm" || ret=-1
+            redhat_install "https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm" "https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm" || ret=-1
         elif version_ge "$systemVersion" 8; then
             check_important_dependence_installed "" dnf-plugins-core
             dnf config-manager --set-enabled powertools || dnf config-manager --set-enabled PowerTools || ret=-1
@@ -349,7 +349,7 @@ install_epel()
             subscription-manager repos --enable "codeready-builder-for-rhel-8-$(arch)-rpms" || ret=-1
             redhat_install "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm" || ret=-1
         elif version_ge "$systemVersion" 7; then
-            subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms" --enable "rhel-ha-for-rhel-*-server-rpms" || ret= -1
+            subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms" --enable "rhel-ha-for-rhel-*-server-rpms" || ret=-1
             redhat_install "https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm" || ret=-1
         else
             ret=-1
@@ -375,7 +375,7 @@ install_epel()
             yellow "epel source installation failed!!"
         fi
         echo
-        green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+        green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
         yellow "Press Enter to continue or Ctrl+c to exit"
         read -s
     fi
@@ -387,7 +387,7 @@ fedora_install_remi()
     fi
     if ! redhat_install "https://rpms.remirepo.net/fedora/remi-release-$systemVersion.rpm"; then
         yellow "remi source installation failed!!"
-        green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+        green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
         yellow "Press Enter to continue or Ctrl+c to exit"
         read -s
     fi
@@ -453,11 +453,11 @@ swap_on()
 {
     if [ $using_swap_now -ne 0 ]; then
         red "Enable swap error occurred"
-        green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+        green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
         yellow "Press Enter to continue or Ctrl+c to exit"
         read -s
     fi
-    local need_swap_size=$(( $1+$(free -m | sed -n 2p | awk '{print $3}')+$(free -m | sed -n 3p | awk '{print $3}')-$( free -m | sed -n 2p | awk '{print $2}')-$(free -m | sed -n 3p | awk '{print $2}') ))
+    local need_swap_size=$(( $1+$(free -m | sed -n 2p | awk '{print $3}')+$(free -m | sed -n 3p | awk '{print $3}')-$(free -m | sed -n 2p | awk '{print $2}')-$(free -m | sed -n 3p | awk '{print $2}') ))
     if [ $need_swap_size -gt 0 ]; then
         tyblue "The available memory is less than $1M, automatically apply for swap.."
         if dd if=/dev/zero of=${temp_dir}/swap bs=1M count=$need_swap_size && chmod 0600 ${temp_dir}/swap && mkswap ${temp_dir}/swap && swapon ${temp_dir}/swap; then
@@ -466,7 +466,7 @@ swap_on()
             rm -rf ${temp_dir}/swap
             red "Failed to enable swap!"
             yellow "Maybe the machine memory and hard disk space are not enough"
-            green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
+            green "Welcome to bug report (https://github.com/mmsaffari/Xray-script/issues), thanks for your support"
             yellow "Press Enter to continue or Ctrl+c to exit"
             read -s
         fi
@@ -596,7 +596,7 @@ get_config_info()
     [ $is_installed -eq 0 ] && return
     local temp
     if grep -q '"network"[ '$'\t]*:[ '$'\t]*"ws"' $xray_config; then
-        if [[ "$(grep -E '"protocol"[ '$'\t]*:[ '$'\t]*"(vmess|vless)"' $xray_config | tail -n 1)" =~ \ "vmess\" ]]; then
+        if [[ "$(grep -E '"protocol"[ '$'\t]*:[ '$'\t]*"(vmess|vless)"' $xray_config | tail -n 1)" =~ \"vmess\" ]]; then
             protocol_3=2
         else
             protocol_3=1
@@ -836,29 +836,29 @@ get_system_info()
         yellow "Press Enter to continue or Ctrl+c to exit"
         read -s
     fi
-    if bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw ubuntu; then
+    if bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw ubuntu; then
         release="ubuntu"
-    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw debian; then
+    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw debian; then
         release="debian"
-    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw deepin; then
+    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw deepin; then
         release="deepin"
-    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw centos; then
-        if bash -c "echo $(grep '^[ '$'\t]*NAME[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw stream; then
+    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw centos; then
+        if bash -c "echo $(grep '^[ '$'\t]*NAME[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw stream; then
             release="centos-stream"
         else
             release="centos"
         fi
-    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw fedora; then
+    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw fedora; then
         release="fedora"
-    elif bash -c "echo $(grep '^[ '$'\t]*NAME[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw oracle; then
+    elif bash -c "echo $(grep '^[ '$'\t]*NAME[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw oracle; then
         release="oracle"
-    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw rhel; then
+    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw rhel; then
         release="rhel"
-    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep - qiw redhatenterprise; then
+    elif bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)" | grep -qiw redhatenterprise; then
         release="rhel"
     fi
-    systemVersion="$(bash -c "echo $(grep '^[ '$'\t]*VERSION_ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-) ")"
-    if [ "$(bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-) ")" == "" ] || [ "$systemVersion" == "" ]; then
+    systemVersion="$(bash -c "echo $(grep '^[ '$'\t]*VERSION_ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)")"
+    if [ "$(bash -c "echo $(grep '^[ '$'\t]*ID[ '$'\t]*=' /etc/os-release | cut -d = -f 2-)")" == "" ] || [ "$systemVersion" == "" ]; then
         yellow "Failed to get system information!"
         green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
         yellow "Press Enter to continue or Ctrl+c to exit"
@@ -879,7 +879,7 @@ check_port()
     local i
     for i in "${check_list[@]}"
     do
-        if ss -natl | awk '{print $4}' | awk -F : '{print $NF}' | grep -E "^[0-9]+$" | grep -wq "${i}"; then
+        if ss -natl | awk '{print $4}'  | awk -F : '{print $NF}' | grep -E "^[0-9]+$" | grep -wq "${i}"; then
             red "TCP: ${i} port is occupied!"
             yellow "please check with lsof -i:${i} command"
             exit 1
@@ -930,7 +930,7 @@ check_SELinux()
             $debian_package_manager -y purge selinux-utils
         fi
     }
-    if getenforce 2>/dev/null | grep -wqi Enforcing || grep -Eq '^[ '$'\t]*SELINUX[ '$'\t]*=[ '$'\t]*enforcing[ '$ '\t]*$' /etc/sysconfig/selinux 2>/dev/null || grep -Eq '^[ '$'\t]*SELINUX[ '$'\t]*=[ '$'\t ]*enforcing[ '$'\t]*$' /etc/selinux/config 2>/dev/null; then
+    if getenforce 2>/dev/null | grep -wqi Enforcing || grep -Eq '^[ '$'\t]*SELINUX[ '$'\t]*=[ '$'\t]*enforcing[ '$'\t]*$' /etc/sysconfig/selinux 2>/dev/null || grep -Eq '^[ '$'\t]*SELINUX[ '$'\t]*=[ '$'\t]*enforcing[ '$'\t]*$' /etc/selinux/config 2>/dev/null; then
         yellow "Detected that SELinux is on, the script may not run properly"
         if ask_if "Try turning off SELinux?(y/n)"; then
             turn_off_selinux
@@ -1092,7 +1092,7 @@ doupdate()
             read -p "Your choice is:" choice
         done
         if [ $choice -ne 0 ]; then
-            if ! [[ "$(grep -i '^[ '$'\t]*port[ '$'\t]' /etc/ssh/sshd_config | awk '{print $2}')" =~ ^(" 22"|)$ ]]; then
+            if ! [[ "$(grep -i '^[ '$'\t]*port[ '$'\t]' /etc/ssh/sshd_config | awk '{print $2}')" =~ ^("22"|)$ ]]; then
                 red "Detected that the ssh port number has been modified"
                 red "The ssh port number may return to the default value (22) after upgrading the system"
                 yellow "Press enter to continue..."
@@ -1332,9 +1332,9 @@ install_bbr()
             fi
             #for ((i=${#kernel_list_headers[@]}-1;i>=0;i--))
             #do
-            # if [[ "${kernel_list_headers[$i]}" =~ "$kernel_now" ]]; then
-            # unset 'kernel_list_headers[$i]'
-            # fi
+            #    if [[ "${kernel_list_headers[$i]}" =~ "$kernel_now" ]]; then
+            #        unset 'kernel_list_headers[$i]'
+            #    fi
             #done
             for ((i=${#kernel_list_devel[@]}-1;i>=0;i--))
             do
@@ -1354,12 +1354,12 @@ install_bbr()
                     unset 'kernel_list_core[$i]'
                 fi
             done
-            #if [ ${#kernel_list[@]} -eq 0 ] && [ ${#kernel_list_headers[@]} -eq 0 ] && [ ${#kernel_list_devel[@]} -eq 0 ] && [ ${#kernel_list_modules[ @]} -eq 0 ] && [ ${#kernel_list_core[@]} -eq 0 ]; then
-            if [ ${#kernel_list[@]} -eq 0 ] && [ ${#kernel_list_devel[@]} -eq 0 ] && [ ${#kernel_list_modules[@]} -eq 0 ] && [ ${#kernel_list_core[@ ]} -eq 0 ]; then
+            #if [ ${#kernel_list[@]} -eq 0 ] && [ ${#kernel_list_headers[@]} -eq 0 ] && [ ${#kernel_list_devel[@]} -eq 0 ] && [ ${#kernel_list_modules[@]} -eq 0 ] && [ ${#kernel_list_core[@]} -eq 0 ]; then
+            if [ ${#kernel_list[@]} -eq 0 ] && [ ${#kernel_list_devel[@]} -eq 0 ] && [ ${#kernel_list_modules[@]} -eq 0 ] && [ ${#kernel_list_core[@]} -eq 0 ]; then
                 yellow "No kernel to uninstall"
                 return 0
             fi
-            #$redhat_package_manager -y remove "${kernel_list[@]}" "${kernel_list_headers[@]}" "${kernel_list_modules[@]}" "${kernel_list_core[@]}" "${kernel_list_devel[@]} " && exit_code=0
+            #$redhat_package_manager -y remove "${kernel_list[@]}" "${kernel_list_headers[@]}" "${kernel_list_modules[@]}" "${kernel_list_core[@]}" "${kernel_list_devel[@]}" && exit_code=0
             $redhat_package_manager -y remove "${kernel_list[@]}" "${kernel_list_modules[@]}" "${kernel_list_core[@]}" "${kernel_list_devel[@]}" && exit_code=0
         fi
         if [ $exit_code -eq 0 ]; then
@@ -1375,10 +1375,10 @@ install_bbr()
     {
         local list=('fq' 'fq_pie' 'cake' 'fq_codel')
         tyblue "---------------Please select the queue algorithm you want to use---------------"
-        green "1.fq"
-        green "2.fq_pie"
-        tyblue "3.cake"
-        tyblue "4.fq_codel"
+        green  " 1.fq"
+        green  " 2.fq_pie"
+        tyblue " 3.cake"
+        tyblue " 4.fq_codel"
         choice=""
         while [[ ! "$choice" =~ ^([1-9][0-9]*)$ ]] || ((choice>4))
         do
@@ -1406,7 +1406,7 @@ install_bbr()
             red "Please enable bbr2 first!"
             return 1
         fi
-        if [ "$(cat /sys/module/tcp_bbr2/parameters/ecn_enable)" == "Y" ] && [ "$(sysctl net.ipv4.tcp_ecn | cut -d = -f 2 | awk '{print $1} ')" == "1" ]; then
+        if [ "$(cat /sys/module/tcp_bbr2/parameters/ecn_enable)" == "Y" ] && [ "$(sysctl net.ipv4.tcp_ecn | cut -d = -f 2 | awk '{print $1}')" == "1" ]; then
             green "bbr2_ECN enabled!"
             tyblue "rebooting the system bbr2_ECN will automatically shut down"
             return 0
@@ -1418,7 +1418,7 @@ install_bbr()
         echo Y > /sys/module/tcp_bbr2/parameters/ecn_enable
         sysctl net.ipv4.tcp_ecn=1
         sleep 1s
-        if [ "$(cat /sys/module/tcp_bbr2/parameters/ecn_enable)" == "Y" ] && [ "$(sysctl net.ipv4.tcp_ecn | cut -d = -f 2 | awk '{print $1} ')" == "1" ]; then
+        if [ "$(cat /sys/module/tcp_bbr2/parameters/ecn_enable)" == "Y" ] && [ "$(sysctl net.ipv4.tcp_ecn | cut -d = -f 2 | awk '{print $1}')" == "1" ]; then
             green "bbr2_ECN enabled"
             return 0
         else
@@ -1437,9 +1437,9 @@ install_bbr()
     do
         echo -e "\\n\\n\\n"
         tyblue "-------------------Please select the bbr version to use-------------------"
-        green " 1. Install/upgrade the latest stable kernel and enable bbr (recommended)"
-        green " 2. Install/upgrade the latest xanmod kernel and enable bbr (recommended)"
-        green " 3. Install/upgrade the latest xanmod kernel and enable bbr2 (recommended)"
+        green  " 1. Install/upgrade the latest stable kernel and enable bbr (recommended)"
+        green  " 2. Install/upgrade the latest xanmod kernel and enable bbr (recommended)"
+        green  " 3. Install/upgrade the latest xanmod kernel and enable bbr2 (recommended)"
         tyblue "4. Install/upgrade the latest kernel and enable bbr"
         if version_ge $your_kernel_version 4.9; then
             tyblue "5. Enable bbr"
@@ -1453,7 +1453,7 @@ install_bbr()
         tyblue "10. Uninstall redundant kernels"
         tyblue "0. exit bbr install"
         tyblue "-----------------Instructions on installing bbr acceleration-------------------"
-        green "bbr congestion algorithm can greatly improve network speed, it is recommended to enable"
+        green  "bbr congestion algorithm can greatly improve network speed, it is recommended to enable"
         yellow "Replacing a third-party kernel may cause the system to become unstable or even unable to boot"
         tyblue "------------------------------------------------ ---------"
         tyblue "Current kernel version: ${your_kernel_version}"
@@ -1469,21 +1469,21 @@ install_bbr()
         tcp_congestion_control=$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')
         if [[ "$tcp_congestion_control" =~ bbr|nanqinlang|tsunami ]]; then
             if [ $tcp_congestion_control == nanqinlang ]; then
-                tcp_congestion_control="${tcp_congestion_control} \\033[35m (revised version of violent bbr)"
+                tcp_congestion_control="${tcp_congestion_control} \\033[35m(revised version of violent bbr)"
             elif [ $tcp_congestion_control == tsunami ]; then
                 tcp_congestion_control="${tcp_congestion_control} \\033[35m(bbr magic revision)"
             fi
-            green " ${tcp_congestion_control}"
+            green  "       ${tcp_congestion_control}"
         else
-            tyblue " ${tcp_congestion_control} \\033[31m(bbr not enabled)"
+            tyblue "       ${tcp_congestion_control} \\033[31m(bbr not enabled)"
         fi
-        tyblue "Current queue algorithm:"
-        green " $(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')"
-        tyblue "current bbr2_ECN:"
+        tyblue "   Current queue algorithm："
+        green  "       $(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')"
+        tyblue "   Current bbr2_ECN："
         if [ "$(cat /sys/module/tcp_bbr2/parameters/ecn_enable 2>/dev/null)" == "Y" ] && [ "$(sysctl net.ipv4.tcp_ecn | cut -d = -f 2 | awk '{print $1}')" == "1" ]; then
-            green "enabled"
+            green  "       enabled"
         else
-            blue "not enabled"
+            blue   "       not enabled"
         fi
         echo
         local choice=""
@@ -1495,7 +1495,7 @@ install_bbr()
             if (( choice==1 || choice==4 )) && ([ $release == "ubuntu" ] || [ $release == "debian" ] || [ $release == "deepin" ] || [ $release == "other-debian" ]) && ! dpkg-deb --help | grep -qw "zstd"; then
                 red "The current system dpkg does not support decompressing zst packages and does not support installing this kernel!"
                 green "Please update the system, or choose to use another system, or choose to install the xanmod kernel"
-            elif (( choice==2 || choice==3 )) && ([ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $ release == "rhel" ] || [ $release == "fedora" ] || [ $release == "other-redhat" ]); then
+            elif (( choice==2 || choice==3 )) && ([ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora" ] || [ $release == "other-redhat" ]); then
                 red "xanmod kernel only supports Debian-based systems, such as Ubuntu, Debian, deepin, UOS"
             else
                 if (( choice==1 || choice==4 )) && ([ $release == "ubuntu" ] || [ $release == "debian" ] || [ $release == "deepin" ] || [ $release == "other-debian" ]); then
@@ -1513,16 +1513,16 @@ install_bbr()
                         fi
                     fi
                 fi
-                if (( choice==1 || choice==4 )) && ([ $release == "ubuntu" ] || [ $release == "debian" ] || [ $release == "deepin" ] || [ $release == "other-debian" ]) && ! version_ge "$(dpkg --list | grep '^[ '$'\t]*ii[ '$'\t][ '$'\t]* linux-base[ '$'\t]' | awk '{print $3}')" "4.5ubuntu1~16.04.1"; then
-                    red "The current system version is too low to support installing this kernel!"
-                    green "Please use a new system or choose to install the xanmod kernel"
+                if (( choice==1 || choice==4 )) && ([ $release == "ubuntu" ] || [ $release == "debian" ] || [ $release == "deepin" ] || [ $release == "other-debian" ]) && ! version_ge "$(dpkg --list | grep '^[ '$'\t]*ii[ '$'\t][ '$'\t]*linux-base[ '$'\t]' | awk '{print $3}')" "4.5ubuntu1~16.04.1"; then
+                    red    "The current system version is too low to support installing this kernel!"
+                    green  "Please use a new system or choose to install the xanmod kernel"
                 else
                     if [ $choice -eq 3 ]; then
                         local temp_bbr=bbr2
                     else
                         local temp_bbr=bbr
                     fi
-                    if ! ([ "$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')" == "$temp_bbr" ] && [ "$(grep '^[ '$' \t]*net.ipv4.tcp_congestion_control[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" == "$temp_bbr" ] && [ "$(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')" == "$(grep '^[ '$'\t ]*net.core.default_qdisc[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" ]) ; then
+                    if ! ([ "$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')" == "$temp_bbr" ] && [ "$(grep '^[ '$'\t]*net.ipv4.tcp_congestion_control[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" == "$temp_bbr" ] && [ "$(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')" == "$(grep '^[ '$'\t]*net.core.default_qdisc[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" ]); then
                         sed -i '/^[ \t]*net.core.default_qdisc[ \t]*=/d' /etc/sysctl.conf
                         sed -i '/^[ \t]*net.ipv4.tcp_congestion_control[ \t]*=/d' /etc/sysctl.conf
                         echo 'net.core.default_qdisc = fq' >> /etc/sysctl.conf
@@ -1541,11 +1541,11 @@ install_bbr()
                     fi
                     local temp_kernel_sh_url
                     if [ $choice -eq 1 ]; then
-                        temp_kernel_sh_url="https://github.com/kirin10000/update-kernel/raw/master/update-kernel-stable.sh"
+                        temp_kernel_sh_url="https://github.com/mmsaffari/update-kernel/raw/master/update-kernel-stable.sh"
                     elif [ $choice -eq 4 ]; then
-                        temp_kernel_sh_url="https://github.com/kirin10000/update-kernel/raw/master/update-kernel.sh"
+                        temp_kernel_sh_url="https://github.com/mmsaffari/update-kernel/raw/master/update-kernel.sh"
                     else
-                        temp_kernel_sh_url="https://github.com/kirin10000/xanmod-install/raw/main/xanmod-install.sh"
+                        temp_kernel_sh_url="https://github.com/mmsaffari/xanmod-install/raw/main/xanmod-install.sh"
                     fi
                     if ! wget -O kernel.sh "$temp_kernel_sh_url"; then
                         red "Failed to get kernel install script"
@@ -1554,7 +1554,7 @@ install_bbr()
                     fi
                     chmod +x kernel.sh
                     ./kernel.sh
-                    if [ "$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')" == "$temp_bbr" ] && [ "$(sysctl net.core.default_qdisc | cut - d = -f 2 | awk '{print $1}')" == "$(grep '^[ '$'\t]*net.core.default_qdisc[ '$'\t]*=' "/etc/ sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" ]; then
+                    if [ "$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')" == "$temp_bbr" ] && [ "$(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')" == "$(grep '^[ '$'\t]*net.core.default_qdisc[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" ]; then
                         green "--------------------$temp_bbr is installed--------------------"
                     else
                         red "Failed to open $temp_bbr"
@@ -1564,7 +1564,7 @@ install_bbr()
                 fi
             fi
         elif [ $choice -eq 5 ]; then
-            if [ "$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')" == "bbr" ] && [ "$(grep '^[ '$'\t] *net.ipv4.tcp_congestion_control[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" == " bbr" ] && [ "$(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')" == "$(grep '^[ '$'\t]*net. core.default_qdisc[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" ]; then
+            if [ "$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')" == "bbr" ] && [ "$(grep '^[ '$'\t]*net.ipv4.tcp_congestion_control[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" == "bbr" ] && [ "$(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')" == "$(grep '^[ '$'\t]*net.core.default_qdisc[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" ]; then
                 green "--------------------bbr installed--------------------"
             else
                 sed -i '/^[ \t]*net.core.default_qdisc[ \t]*=/d' /etc/sysctl.conf
@@ -1596,7 +1596,7 @@ install_bbr()
                 fi
             fi
         elif [ $choice -eq 6 ]; then
-            if [ "$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')" == "bbr2" ] && [ "$(grep '^[ '$'\t] *net.ipv4.tcp_congestion_control[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" == " bbr2" ] && [ "$(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')" == "$(grep '^[ '$'\t]*net. core.default_qdisc[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" ]; then
+            if [ "$(sysctl net.ipv4.tcp_congestion_control | cut -d = -f 2 | awk '{print $1}')" == "bbr2" ] && [ "$(grep '^[ '$'\t]*net.ipv4.tcp_congestion_control[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" == "bbr2" ] && [ "$(sysctl net.core.default_qdisc | cut -d = -f 2 | awk '{print $1}')" == "$(grep '^[ '$'\t]*net.core.default_qdisc[ '$'\t]*=' "/etc/sysctl.conf" | tail -n 1 | cut -d = -f 2 | awk '{print $1}')" ]; then
                 green "--------------------bbr2 installed--------------------"
             else
                 sed -i '/^[ \t]*net.core.default_qdisc[ \t]*=/d' /etc/sysctl.conf
@@ -1652,20 +1652,20 @@ readProtocolConfig()
 {
     echo -e "\\n\\n\\n"
     tyblue "---------------------Please select transport layer protocol--------------------"
-    tyblue "1.TCP"
-    tyblue "2. gRPC"
-    tyblue "3. WebSocket"
-    tyblue "4. TCP + gRPC"
-    tyblue "5. TCP + WebSocket"
-    tyblue "6. gRPC + WebSocket"
-    tyblue "7. TCP + gRPC + WebSocket"
-    yellow "0.None (Web service only)"
+    tyblue " 1. TCP"
+    tyblue " 2. gRPC"
+    tyblue " 3. WebSocket"
+    tyblue " 4. TCP + gRPC"
+    tyblue " 5. TCP + WebSocket"
+    tyblue " 6. gRPC + WebSocket"
+    tyblue " 7. TCP + gRPC + WebSocket"
+    yellow " 0. None (Web Services Only)"
     echo
-    blue "Note:"
-    blue " 1. Don't know what is CDN or don't use CDN, please choose TCP"
-    blue " 2. gRPC and WebSocket are supported through CDN. For the difference between the two, see: https://github.com/kirin10000/Xray-script#About grpc and websocket"
-    blue " 3. Only TCP can use XTLS, and XTLS is fully compatible with TLS"
-    blue " 4. Only VLESS can be transmitted using TCP"
+    blue   " Note："
+    blue   "   1. If you don't know what CDN is or you are not using CDN, please select TCP"
+    blue   "   2. gRPC and WebSocket are supported through CDN. For the difference between the two, see: https://github.com/kirin10000/Xray-script#About grpc and websocket"
+    blue   "   3. Only TCP can use XTLS, and XTLS is completely compatible with TLS"
+    blue   "   4. Only VLESS can be transmitted by TCP"
     echo
     local choice=""
     while [[ ! "$choice" =~ ^(0|[1-9][0-9]*)$ ]] || ((choice>7))
@@ -1724,37 +1724,37 @@ readPretend()
     while [ $queren -ne 1 ]
     do
         echo -e "\\n\\n\\n"
-        tyblue "-----------------------------Please select the fake website page------------- -----------------"
-        green " 1. Cloudreve (recommended)"
-        purple "Personal Network Drive"
-        green " 2. Nextcloud (recommended)"
-        purple "Personal network disk, need to install php"
-        tyblue "3.403 page"
-        purple "Simulate website background"
-        red " 4. Custom static website (not recommended)"
-        red " 5. Custom reverse proxy page (not recommended)"
+        tyblue "------------------------------Please select the camouflage website page------------------------------"
+        green  " 1. Cloudreve (recommended)"
+        purple "     Personal network disk"
+        green  " 2. Nextcloud (recommended)"
+        purple "     Personal network disk, you need to install PHP"
+        tyblue " 3. 403 page"
+        purple "     Simulate website backend"
+        red    " 4. Custom static website (not recommended)"
+        red    " 5. Customized reverse proxy webpage (not recommended)"
         echo
-        green "Memory <128MB, it is recommended to select 403 pages"
-        green " 128MB <= memory < 1G Cloudreve is recommended"
-        green "Memory>=1G, it is recommended to choose Nextcloud or Cloudreve"
+        green  " Memory <128MB is recommended to select page 403"
+        green  " 128MB <= Memory <1G is recommended to choose CloudReve"
+        green  " Memory> = 1G is recommended to select NextCloud or CloudReve"
         echo
-        yellow "For detailed instructions on choosing a fake website, see: https://github.com/kirin10000/Xray-script#Fake website description"
+        yellow " For details on choosing a camouflage website, see: https://github.com/mmsaffari/xray-script#FakeWebsitesDescription"
         echo
         pretend=""
-        while [[ "$pretend" != "1" && "$pretend" != "2" && "$pretend" != "3" && "$pretend" != "4" && "$pretend" != " 5" ]]
+        while [[ "$pretend" != "1" && "$pretend" != "2" && "$pretend" != "3" && "$pretend" != "4" && "$pretend" != "5" ]]
         do
             read -p "Your choice is:" pretend
         done
         queren=1
         if [ $pretend -eq 1 ]; then
             if [ -z "$machine" ]; then
-                red "Your VPS command set does not support Cloudreve!"
+                red "Your VPS CPU architecture does not support Cloudreve!"
                 yellow "Cloudreve only supports x86_64, arm64 and arm instruction sets"
                 sleep 3s
                 queren=0
             fi
         elif [ $pretend -eq 2 ]; then
-            if (([ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ]) && ! version_ge "$systemVersion" "8" ) || ([ $release == "rhel" ] && ! version_ge "$systemVersion" "8") || ([ $release == "fedora" ] && ! version_ge "$systemVersion" "30") || ([ $release == "ubuntu " ] && ! version_ge "$systemVersion" "20.04") || ([ $release == "debian" ] && ! version_ge "$systemVersion" "11"); then
+            if (([ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ]) && ! version_ge "$systemVersion" "8" ) || ([ $release == "rhel" ] && ! version_ge "$systemVersion" "8") || ([ $release == "fedora" ] && ! version_ge "$systemVersion" "30") || ([ $release == "ubuntu" ] && ! version_ge "$systemVersion" "20.04") || ([ $release == "debian" ] && ! version_ge "$systemVersion" "11"); then
                 red "The system version is too low to install php!"
                 echo
                 tyblue "Installing Nextcloud requires php to be installed"
@@ -1763,7 +1763,7 @@ readPretend()
                 yellow " 2. Debian 11+"
                 yellow " 3. Other Debian 11+ based systems"
                 yellow " 4. Red Hat Enterprise Linux 8+"
-                yellow "5. CentOS 8+"
+                yellow " 5. CentOS 8+"
                 yellow " 6. Fedora 30+"
                 yellow " 7. Oracle Linux 8+"
                 yellow " 8. Other Red Hat 8+ based systems"
@@ -1779,7 +1779,7 @@ readPretend()
                 yellow " 2. Debian 11+"
                 yellow " 3. Other Debian 11+ based systems"
                 yellow " 4. Red Hat Enterprise Linux 8+"
-                yellow "5. CentOS 8+"
+                yellow " 5. CentOS 8+"
                 yellow " 6. Fedora 30+"
                 yellow " 7. Oracle Linux 8+"
                 yellow " 8. Other Red Hat 8+ based systems"
@@ -1797,7 +1797,7 @@ readPretend()
                 ! ask_if "Are you sure? (y/n)" && queren=0
             fi
         elif [ $pretend -eq 4 ]; then
-            tyblue "Please put your website source code in \"${nginx_prefix}/html/$1\" after installation"
+            tyblue "Please put your website source code in \"${nginx_prefix}/html/$1\" after the installation is completed"
             ! ask_if "Confirm and continue? (y/n)" && queren=0
         elif [ $pretend -eq 5 ]; then
             yellow "Enter the reverse proxy URL, the format is: \"https://v.qq.com\""
@@ -1831,9 +1831,9 @@ readDomain()
     echo -e "\\n\\n\\n"
     tyblue "--------------------Please select the domain name resolution--------------------"
     tyblue " 1. Both the main domain name and www.main domain name resolve to this server \\033[32m (recommended)"
-    green "For example: 123.com and www.123.com resolve to this server"
+    green  "    For example: 123.com and www.123.com resolve to this server"
     tyblue " 2. Only a specific domain name resolves to this server"
-    green "For example: 123.com or one of www.123.com or xxx.123.com resolves to this server"
+    green  "    For example: 123.com or one of www.123.com or xxx.123.com resolves to this server"
     echo
     while [ "$domain_config" != "1" ] && [ "$domain_config" != "2" ]
     do
@@ -1874,7 +1874,7 @@ readDomain()
 install_nginx_compile_toolchains()
 {
     green "Installing Nginx build toolchain..."
-    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora " ] || [ $release == "other-redhat" ]; then
+    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora" ] || [ $release == "other-redhat" ]; then
         install_dependence ca-certificates wget gcc gcc-c++ make perl-IPC-Cmd perl-Getopt-Long perl-Data-Dumper
         if ! perl -e "use FindBin" > /dev/null 2>&1; then
             install_dependence perl-FindBin
@@ -1886,7 +1886,7 @@ install_nginx_compile_toolchains()
 install_php_compile_toolchains()
 {
     green "Installing the php compilation toolchain..."
-    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora " ] || [ $release == "other-redhat" ]; then
+    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora" ] || [ $release == "other-redhat" ]; then
         install_dependence ca-certificates wget xz gcc gcc-c++ make pkgconf-pkg-config autoconf git
     else
         install_dependence ca-certificates wget xz-utils gcc g++ make pkg-config autoconf git
@@ -1895,7 +1895,7 @@ install_php_compile_toolchains()
 install_nginx_dependence()
 {
     green "Installing Nginx dependencies..."
-    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora " ] || [ $release == "other-redhat" ]; then
+    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora" ] || [ $release == "other-redhat" ]; then
         install_dependence pcre2-devel zlib-devel libxml2-devel libxslt-devel gd-devel geoip-devel perl-ExtUtils-Embed gperftools-devel perl-devel
     else
         install_dependence libpcre2-dev zlib1g-dev libxml2-dev libxslt1-dev libgd-dev libgeoip-dev libgoogle-perftools-dev libperl-dev
@@ -1904,14 +1904,14 @@ install_nginx_dependence()
 install_php_dependence()
 {
     green "Installing php dependencies..."
-    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora " ] || [ $release == "other-redhat" ]; then
+    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora" ] || [ $release == "other-redhat" ]; then
         fedora_install_remi
-        install_dependence libxml2-devel sqlite-devel systemd-devel libacl-devel openssl-devel krb5-devel pcre2-devel zlib-devel bzip2-devel libcurl-devel gdbm-devel libdb-devel tokyocabinet-devel lmdb-devel enchant-devel libffi-devel libpng -devel gd-devel libwebp-devel libjpeg-turbo-devel libXpm-devel freetype-devel gmp-devel uw-imap-devel libicu-devel openldap-devel oniguruma-devel unixODBC-devel freetds-devel libpq-devel aspell-devel libedit- devel net-snmp-devel libsodium-devel libargon2-devel libtidy-devel libxslt-devel libzip-devel ImageMagick-devel
+        install_dependence libxml2-devel sqlite-devel systemd-devel libacl-devel openssl-devel krb5-devel pcre2-devel zlib-devel bzip2-devel libcurl-devel gdbm-devel libdb-devel tokyocabinet-devel lmdb-devel enchant-devel libffi-devel libpng-devel gd-devel libwebp-devel libjpeg-turbo-devel libXpm-devel freetype-devel gmp-devel uw-imap-devel libicu-devel openldap-devel oniguruma-devel unixODBC-devel freetds-devel libpq-devel aspell-devel libedit-devel net-snmp-devel libsodium-devel libargon2-devel libtidy-devel libxslt-devel libzip-devel ImageMagick-devel
     else
-        if ! $debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm -dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-2-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2- dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev && !$debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm-dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2-dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev; thenthenthen
+        if ! $debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm-dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-2-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2-dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev && ! $debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm-dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2-dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev; then
             $debian_package_manager update
             $debian_package_manager -y -f --no-install-recommends install
-            if ! $debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm -dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-2-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2- dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev && !$debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm-dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2-dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev; thenthenthen
+            if ! $debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm-dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-2-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2-dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev && ! $debian_package_manager -y --no-install-recommends install libxml2-dev libsqlite3-dev libsystemd-dev libacl1-dev libapparmor-dev libssl-dev libkrb5-dev libpcre2-dev zlib1g-dev libbz2-dev libcurl4-openssl-dev libqdbm-dev libdb-dev libtokyocabinet-dev liblmdb-dev libenchant-dev libffi-dev libpng-dev libgd-dev libwebp-dev libjpeg-dev libxpm-dev libfreetype6-dev libgmp-dev libc-client2007e-dev libicu-dev libldap2-dev libsasl2-dev libonig-dev unixodbc-dev freetds-dev libpq-dev libpspell-dev libedit-dev libmm-dev libsnmp-dev libsodium-dev libargon2-dev libtidy-dev libxslt1-dev libzip-dev libmagickwand-dev; then
                 yellow "Dependency installation failed!!"
                 green "Welcome to bug report (https://github.com/kirin10000/Xray-script/issues), thanks for your support"
                 yellow "Press Enter to continue or Ctrl+c to exit"
@@ -1923,7 +1923,7 @@ install_php_dependence()
 install_acme_dependence()
 {
     green "Installing acme.sh dependencies..."
-    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora " ] || [ $release == "other-redhat" ]; then
+    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora" ] || [ $release == "other-redhat" ]; then
         install_dependence curl openssl crontabs
     else
         install_dependence curl openssl cron
@@ -1976,9 +1976,9 @@ compile_php()
     if [ $release == "ubuntu" ] || [ $release == "debian" ] || [ $release == "deepin" ] || [ $release == "other-debian" ]; then
         sed -i 's#if test -f $THIS_PREFIX/$PHP_LIBDIR/lib$LIB.a || test -f $THIS_PREFIX/$PHP_LIBDIR/lib$LIB.$SHLIB_SUFFIX_NAME#& || true#' configure
         sed -i 's#if test ! -r "$PDO_FREETDS_INSTALLATION_DIR/$PHP_LIBDIR/libsybdb.a" && test ! -r "$PDO_FREETDS_INSTALLATION_DIR/$PHP_LIBDIR/libsybdb.so"#& \&\& false#' configure
-        ./configure --prefix=${php_prefix} --enable-embed=shared --enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data --with-fpm -systemd --with-fpm-acl --with-fpm-apparmor --disable-phpdbg --with-layout=GNU --with-openssl --with-kerberos --with-external-pcre --with-zlib --enable-bcmath --with-bz2 --enable-calendar --with-curl --enable-dba --with-qdbm --with-db4 --with-db1 --with-tcadb --with-lmdb --with-enchant --enable-exif --with-ffi --enable-ftp --enable-gd --with-external-gd --with-avif --with-webp --with-jpeg --with -xpm --with-freetype --enable-gd-jis-conv --with-gettext --with-gmp --with-mhash --with-imap --with-imap-ssl --enable-intl -- with-ldap --with-ldap-sasl --enable-mbstring --with-mysqli --with-mysql-sock --with-unixODBC --enable-pcntl --with-pdo-dblib --with-pdo- mysql --with-zlib-dir --with-pdo-odbc=unixODBC,/usr --with-pdo-pgsql --with-pgsql --with-pspell --with-libedit --with-mm --enable-shmop --with-snmp --enable-soap --enable-sockets - -with-sodium --with-external-libcrypt --with-password-argon2 --enable-sysvmsg --enable-sysvsem --enable-sysvshm --with-tidy --with-xsl --with-zip -- enable-mysqlnd --with-pear CFLAGS="${cflags[*]}" CXXFLAGS="${cxxflags[*]}"
+        ./configure --prefix=${php_prefix} --enable-embed=shared --enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data --with-fpm-systemd --with-fpm-acl --with-fpm-apparmor --disable-phpdbg --with-layout=GNU --with-openssl --with-kerberos --with-external-pcre --with-zlib --enable-bcmath --with-bz2 --enable-calendar --with-curl --enable-dba --with-qdbm --with-db4 --with-db1 --with-tcadb --with-lmdb --with-enchant --enable-exif --with-ffi --enable-ftp --enable-gd --with-external-gd --with-avif --with-webp --with-jpeg --with-xpm --with-freetype --enable-gd-jis-conv --with-gettext --with-gmp --with-mhash --with-imap --with-imap-ssl --enable-intl --with-ldap --with-ldap-sasl --enable-mbstring --with-mysqli --with-mysql-sock --with-unixODBC --enable-pcntl --with-pdo-dblib --with-pdo-mysql --with-zlib-dir --with-pdo-odbc=unixODBC,/usr --with-pdo-pgsql --with-pgsql --with-pspell --with-libedit --with-mm --enable-shmop --with-snmp --enable-soap --enable-sockets --with-sodium --with-external-libcrypt --with-password-argon2 --enable-sysvmsg --enable-sysvsem --enable-sysvshm --with-tidy --with-xsl --with-zip --enable-mysqlnd --with-pear CFLAGS="${cflags[*]}" CXXFLAGS="${cxxflags[*]}"
     else
-        ./configure --prefix=${php_prefix} --with-libdir=lib64 --enable-embed=shared --enable-fpm --with-fpm-user=www-data --with-fpm-group=www -data --with-fpm-systemd --with-fpm-acl --disable-phpdbg --with-layout=GNU --with-openssl --with-kerberos --with-external-pcre --with-zlib --enable-bcmath --with-bz2 --enable-calendar --with-curl --enable-dba --with-gdbm --with-db4 --with-db1 --with-tcadb --with-lmdb --with-enchant --enable-exif --with-ffi --enable-ftp --enable-gd --with-external-gd --with-avif --with-webp --with-jpeg --with -xpm --with-freetype --enable-gd-jis-conv --with-gettext --with-gmp --with-mhash --with-imap --with-imap-ssl --enable-intl -- with-ldap --with-ldap-sasl --enable-mbstring --with-mysqli --with-mysql-sock --with-unixODBC --enable-pcntl --with-pdo-dblib --with-pdo- mysql --with-zlib-dir --with-pdo-odbc=unixODBC,/usr --with-pdo-pgsql --with-pgsql --with-pspell --with-libedit --enable-shmop --with-snmp --enable-soap --enable-sockets --with-sodium - -with-external-libcrypt --with-password-argon2 --enable-sysvmsg --enable-sysvsem --enable-sysvshm --with-tidy --with-xsl --with-zip --enable-mysqlnd -- with-pear CFLAGS="${cflags[*]}" CXXFLAGS="${cxxflags[*]}"
+        ./configure --prefix=${php_prefix} --with-libdir=lib64 --enable-embed=shared --enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data --with-fpm-systemd --with-fpm-acl --disable-phpdbg --with-layout=GNU --with-openssl --with-kerberos --with-external-pcre --with-zlib --enable-bcmath --with-bz2 --enable-calendar --with-curl --enable-dba --with-gdbm --with-db4 --with-db1 --with-tcadb --with-lmdb --with-enchant --enable-exif --with-ffi --enable-ftp --enable-gd --with-external-gd --with-avif --with-webp --with-jpeg --with-xpm --with-freetype --enable-gd-jis-conv --with-gettext --with-gmp --with-mhash --with-imap --with-imap-ssl --enable-intl --with-ldap --with-ldap-sasl --enable-mbstring --with-mysqli --with-mysql-sock --with-unixODBC --enable-pcntl --with-pdo-dblib --with-pdo-mysql --with-zlib-dir --with-pdo-odbc=unixODBC,/usr --with-pdo-pgsql --with-pgsql --with-pspell --with-libedit --enable-shmop --with-snmp --enable-soap --enable-sockets --with-sodium --with-external-libcrypt --with-password-argon2 --enable-sysvmsg --enable-sysvsem --enable-sysvshm --with-tidy --with-xsl --with-zip --enable-mysqlnd --with-pear CFLAGS="${cflags[*]}" CXXFLAGS="${cxxflags[*]}"
     fi
     swap_on 2048
     if ! make -j$cpu_thread_num; then
@@ -1989,7 +1989,7 @@ compile_php()
         exit 1
     fi
     swap_off
-    cd..
+    cd ..
 }
 instal_php_imagick()
 {
@@ -2015,7 +2015,7 @@ instal_php_imagick()
         swap_off
     fi
     mv modules/imagick.so "$(${php_prefix}/bin/php -i | grep "^extension_dir" | awk '{print $3}')"
-    cd..
+    cd ..
     rm -rf imagick
 }
 install_php_part1()
@@ -2026,7 +2026,7 @@ install_php_part1()
     mv sapi/fpm/php-fpm.service "${php_prefix}/php-fpm.service.default.temp"
     mv php.ini-production "${php_prefix}"
     mv php.ini-development "${php_prefix}"
-    cd..
+    cd ..
     rm -rf "${php_version}"
     instal_php_imagick
     mv "${php_prefix}/php-fpm.service.default.temp" "${php_prefix}/php-fpm.service.default"
@@ -2107,12 +2107,12 @@ compile_nginx()
     tar -zxf ${openssl_version}.tar.gz
     rm -f "${openssl_version}.tar.gz"
     cd ${nginx_version}
-    sed -i "s/OPTIMIZE[ \\t]*=>[ \\t]*'-O'/OPTIMIZE => '-O3'/g" src/http/modules/perl/Makefile.PL
-    sed -i 's/NGX_PERL_CFLAGS="$CFLAGS `$NGX_PERL -MExtUtils::Embed -e ccopts`"/NGX_PERL_CFLAGS="`$NGX_PERL -MExtUtils::Embed -e ccopts` $CFLAGS"/g' auto/lib/ perl/conf
+    sed -i "s/OPTIMIZE[ \\t]*=>[ \\t]*'-O'/OPTIMIZE          => '-O3'/g" src/http/modules/perl/Makefile.PL
+    sed -i 's/NGX_PERL_CFLAGS="$CFLAGS `$NGX_PERL -MExtUtils::Embed -e ccopts`"/NGX_PERL_CFLAGS="`$NGX_PERL -MExtUtils::Embed -e ccopts` $CFLAGS"/g' auto/lib/perl/conf
     sed -i 's/NGX_PM_CFLAGS=`$NGX_PERL -MExtUtils::Embed -e ccopts`/NGX_PM_CFLAGS="`$NGX_PERL -MExtUtils::Embed -e ccopts` $CFLAGS"/g' auto/lib/perl/conf
-    ./configure --prefix="${nginx_prefix}"--user=root --group=root --with-threads --with-file-aio --with-http_ssl_module --with-http_v2_module --with-http_realip_module --with-http_addition_module --with-http_xslt_module=dynamic - -with-http_image_filter_module=dynamic --with-http_geoip_module=dynamic --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module -- with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --with-http_perl_module=dynamic --with-mail=dynamic --with-mail_ssl_module --with-stream=dynamic - -with-stream_ssl_module --with-stream_realip_module --with-stream_geoip_module=dynamic --with-stream_ssl_preread_module --with-google_perftools_module --with-compat--with-cc-opt="${cflags[*]}" --with-openssl="../$openssl_version" --with-openssl-opt="${cflags[*]}"
+    ./configure --prefix="${nginx_prefix}" --user=root --group=root --with-threads --with-file-aio --with-http_ssl_module --with-http_v2_module --with-http_realip_module --with-http_addition_module --with-http_xslt_module=dynamic --with-http_image_filter_module=dynamic --with-http_geoip_module=dynamic --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --with-http_perl_module=dynamic --with-mail=dynamic --with-mail_ssl_module --with-stream=dynamic --with-stream_ssl_module --with-stream_realip_module --with-stream_geoip_module=dynamic --with-stream_ssl_preread_module --with-google_perftools_module --with-compat --with-cc-opt="${cflags[*]}" --with-openssl="../$openssl_version" --with-openssl-opt="${cflags[*]}"
     #--with-select_module --with-poll_module --with-cpp_test_module --with-pcre --with-pcre-jit --with-libatomic
-    #./configure --prefix=/usr/local/nginx --with-openssl=../$openssl_version --with-mail=dynamic --with-mail_ssl_module --with-stream=dynamic --with-stream_ssl_module --with-stream_realip_module --with-stream_geoip_module=dynamic --with-stream_ssl_preread_module --with-http_ssl_module - -with-http_v2_module --with-http_realip_module --with-http_addition_module --with-http_xslt_module=dynamic --with-http_image_filter_module=dynamic --with-http_geoip_module=dynamic --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --with-http_perl_module =dynamic --with-pcre --with-libatomic --with-compat --with-cpp_test_module--with-google_perftools_module --with-file-aio --with-threads --with-poll_module --with-select_module --with-cc-opt="-Wno-error ${cflags[*]}"
+    #./configure --prefix=/usr/local/nginx --with-openssl=../$openssl_version --with-mail=dynamic --with-mail_ssl_module --with-stream=dynamic --with-stream_ssl_module --with-stream_realip_module --with-stream_geoip_module=dynamic --with-stream_ssl_preread_module --with-http_ssl_module --with-http_v2_module --with-http_realip_module --with-http_addition_module --with-http_xslt_module=dynamic --with-http_image_filter_module=dynamic --with-http_geoip_module=dynamic --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --with-http_perl_module=dynamic --with-pcre --with-libatomic --with-compat --with-cpp_test_module --with-google_perftools_module --with-file-aio --with-threads --with-poll_module --with-select_module --with-cc-opt="-Wno-error ${cflags[*]}"
     swap_on 480
     if ! make -j$cpu_thread_num; then
         swap_off
@@ -2122,7 +2122,7 @@ compile_nginx()
         exit 1
     fi
     swap_off
-    cd..
+    cd ..
 }
 config_service_nginx()
 {
@@ -2157,7 +2157,7 @@ install_nginx_part1()
     green "Installing Nginx..."
     cd "${nginx_version}"
     make install
-    cd..
+    cd ..
     rm -rf "${nginx_version}"
     rm -rf "$openssl_version"
 }
@@ -2169,7 +2169,7 @@ install_nginx_part2()
     mkdir ${nginx_prefix}/html/issue_certs
 cat > ${nginx_prefix}/conf/issue_certs.conf << EOF
 events {
-    worker_connections 1024;
+    worker_connections  1024;
 }
 http {
     server {
@@ -2187,14 +2187,14 @@ cat > ${nginx_prefix}/conf.d/nextcloud.conf <<EOF
     gzip_comp_level 4;
     gzip_min_length 256;
     gzip_proxied expired no-cache no-store private no_last_modified no_etag auth;
-    gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/ x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd .rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
-    add_header Referrer-Policy "no-referrer" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-Download-Options "noopen" always;
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-Permitted-Cross-Domain-Policies "none" always;
-    add_header X-Robots-Tag "none" always;
-    add_header X-XSS-Protection "1; mode=block" always;
+    gzip_types application/atom+xml application/javascript application/json application/ld+json application/manifest+json application/rss+xml application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/xhtml+xml application/xml font/opentype image/bmp image/svg+xml image/x-icon text/cache-manifest text/css text/plain text/vcard text/vnd.rim.location.xloc text/vtt text/x-component text/x-cross-domain-policy;
+    add_header Referrer-Policy                      "no-referrer"   always;
+    add_header X-Content-Type-Options               "nosniff"       always;
+    add_header X-Download-Options                   "noopen"        always;
+    add_header X-Frame-Options                      "SAMEORIGIN"    always;
+    add_header X-Permitted-Cross-Domain-Policies    "none"          always;
+    add_header X-Robots-Tag                         "none"          always;
+    add_header X-XSS-Protection                     "1; mode=block" always;
     fastcgi_hide_header X-Powered-By;
     index index.php index.html /index.php\$request_uri;
     location = / {
@@ -2209,15 +2209,15 @@ cat > ${nginx_prefix}/conf.d/nextcloud.conf <<EOF
     }
     location ^~ /.well-known {
         location = /.well-known/carddav { return 301 https://\$host/remote.php/dav/; }
-        location = /.well-known/caldav { return 301 https://\$host/remote.php/dav/; }
-        location /.well-known/acme-challenge { try_files \$uri \$uri/ =404; }
-        location /.well-known/pki-validation { try_files \$uri \$uri/ =404; }
+        location = /.well-known/caldav  { return 301 https://\$host/remote.php/dav/; }
+        location /.well-known/acme-challenge    { try_files \$uri \$uri/ =404; }
+        location /.well-known/pki-validation    { try_files \$uri \$uri/ =404; }
         return 301 https://\$host/index.php\$request_uri;
     }
-    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/) { return 404; }
-    location ~ ^/(?:\\.|autotest|occ|issue|indie|db_|console) { return 404; }
+    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
+    location ~ ^/(?:\\.|autotest|occ|issue|indie|db_|console)                { return 404; }
     location ~ \\.php(?:$|/) {
-        rewrite ^/(?!index|remote|public|cron|core\\/ajax\\/update|status|ocs\\/v[12]|updater\\/.+|oc[ms]-provider\\ /.+|.+\\/richdocumentscode\\/proxy) /index.php\$request_uri;
+        rewrite ^/(?!index|remote|public|cron|core\\/ajax\\/update|status|ocs\\/v[12]|updater\\/.+|oc[ms]-provider\\/.+|.+\\/richdocumentscode\\/proxy) /index.php\$request_uri;
         fastcgi_split_path_info ^(.+?\\.php)(/.*)$;
         set \$path_info \$fastcgi_path_info;
         try_files \$fastcgi_script_name =404;
@@ -2261,7 +2261,7 @@ EOF
 install_update_xray()
 {
     green "Installing/updating Xray..."
-    if ! bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --without-geodata --without- logfiles && ! bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --without-geodata --without -logfiles; then
+    if ! bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --without-geodata --without-logfiles && ! bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --without-geodata --without-logfiles; then
         red "Failed to install/update Xray"
         yellow "Press Enter to continue or Ctrl+c to terminate"
         read -s
@@ -2299,10 +2299,10 @@ get_cert()
     echo "{}" > $xray_config
     local temp=""
     [ ${domain_config_list[$1]} -eq 1 ] && temp="-d ${domain_list[$1]}"
-    if ! $HOME/.acme.sh/acme.sh --issue -d ${true_domain_list[$1]} $temp -w ${nginx_prefix}/html/issue_certs -k ec-256 -ak ec-256 --pre -hook "mv ${nginx_prefix}/conf/nginx.conf ${nginx_prefix}/conf/nginx.conf.bak && cp ${nginx_prefix}/conf/issue_certs.conf ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --post-hook "mv ${nginx_prefix}/conf/nginx.conf.bak ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --ocsp && ! $HOME /.acme.sh/acme.sh --issue -d ${true_domain_list[$1]} $temp -w ${nginx_prefix}/html/issue_certs -k ec-256 -ak ec-256 --server letsencrypt --pre -hook "mv ${nginx_prefix}/conf/nginx.conf ${nginx_prefix}/conf/nginx.conf.bak && cp ${nginx_prefix}/conf/issue_certs.conf ${nginx_prefix}/conf/nginx.conf &&sleep 2s && systemctl restart nginx" --post-hook "mv ${nginx_prefix}/conf/nginx.conf.bak ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --ocsp; then
-        $HOME/.acme.sh/acme.sh --issue -d ${true_domain_list[$1]} $temp -w ${nginx_prefix}/html/issue_certs -k ec-256 -ak ec-256 --pre-hook "mv ${nginx_prefix}/conf/nginx.conf ${nginx_prefix}/conf/nginx.conf.bak && cp ${nginx_prefix}/conf/issue_certs.conf ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --post-hook "mv ${nginx_prefix}/conf/nginx.conf.bak ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --ocsp --debug || $ HOME/.acme.sh/acme.sh --issue -d ${true_domain_list[$1]} $temp -w ${nginx_prefix}/html/issue_certs -k ec-256 -ak ec-256 --server letsencrypt -- pre-hook "mv ${nginx_prefix}/conf/nginx.conf ${nginx_prefix}/conf/nginx.conf.bak && cp ${nginx_prefix}/conf/issue_certs.conf ${nginx_prefix}/conf/nginx.conf &&sleep 2s && systemctl restart nginx" --post-hook "mv ${nginx_prefix}/conf/nginx.conf.bak ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --ocsp --debug
+    if ! $HOME/.acme.sh/acme.sh --issue -d ${true_domain_list[$1]} $temp -w ${nginx_prefix}/html/issue_certs -k ec-256 -ak ec-256 --pre-hook "mv ${nginx_prefix}/conf/nginx.conf ${nginx_prefix}/conf/nginx.conf.bak && cp ${nginx_prefix}/conf/issue_certs.conf ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --post-hook "mv ${nginx_prefix}/conf/nginx.conf.bak ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --ocsp && ! $HOME/.acme.sh/acme.sh --issue -d ${true_domain_list[$1]} $temp -w ${nginx_prefix}/html/issue_certs -k ec-256 -ak ec-256 --server letsencrypt --pre-hook "mv ${nginx_prefix}/conf/nginx.conf ${nginx_prefix}/conf/nginx.conf.bak && cp ${nginx_prefix}/conf/issue_certs.conf ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --post-hook "mv ${nginx_prefix}/conf/nginx.conf.bak ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --ocsp; then
+        $HOME/.acme.sh/acme.sh --issue -d ${true_domain_list[$1]} $temp -w ${nginx_prefix}/html/issue_certs -k ec-256 -ak ec-256 --pre-hook "mv ${nginx_prefix}/conf/nginx.conf ${nginx_prefix}/conf/nginx.conf.bak && cp ${nginx_prefix}/conf/issue_certs.conf ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --post-hook "mv ${nginx_prefix}/conf/nginx.conf.bak ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --ocsp --debug || $HOME/.acme.sh/acme.sh --issue -d ${true_domain_list[$1]} $temp -w ${nginx_prefix}/html/issue_certs -k ec-256 -ak ec-256 --server letsencrypt --pre-hook "mv ${nginx_prefix}/conf/nginx.conf ${nginx_prefix}/conf/nginx.conf.bak && cp ${nginx_prefix}/conf/issue_certs.conf ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --post-hook "mv ${nginx_prefix}/conf/nginx.conf.bak ${nginx_prefix}/conf/nginx.conf && sleep 2s && systemctl restart nginx" --ocsp --debug
     fi
-    if ! $HOME/.acme.sh/acme.sh --installcert -d ${true_domain_list[$1]} --key-file ${nginx_prefix}/certs/${true_domain_list[$1]}.key --fullchain- file ${nginx_prefix}/certs/${true_domain_list[$1]}.cer --reloadcmd "sleep 2s && systemctl restart xray" --ecc; then
+    if ! $HOME/.acme.sh/acme.sh --installcert -d ${true_domain_list[$1]} --key-file ${nginx_prefix}/certs/${true_domain_list[$1]}.key --fullchain-file ${nginx_prefix}/certs/${true_domain_list[$1]}.cer --reloadcmd "sleep 2s && systemctl restart xray" --ecc; then
         $HOME/.acme.sh/acme.sh --remove --domain ${true_domain_list[$1]} --ecc
         rm -rf $HOME/.acme.sh/${true_domain_list[$1]}_ecc
         rm -rf "${nginx_prefix}/certs/${true_domain_list[$1]}.key" "${nginx_prefix}/certs/${true_domain_list[$1]}.cer"
@@ -2322,8 +2322,8 @@ get_all_certs()
         if ! get_cert "$i"; then
             red "Domain name\"${true_domain_list[$i]}\"Certificate application failed!"
             yellow "Please check:"
-            yellow "1. Whether the domain name is resolved correctly"
-            yellow " 2. Whether port 80 of the vps firewall is open"
+            yellow "	1. Whether the domain name is resolved correctly"
+            yellow "	2. Whether port 80 of the vps firewall is open"
             yellow "and after the install/reset domain is complete, use the script main menu \"reset domain\" option to fix"
             yellow "Press enter to continue..."
             read -s
@@ -2336,83 +2336,83 @@ config_nginx_init()
 {
 cat > ${nginx_prefix}/conf/nginx.conf <<EOF
 
-user root root;
-worker_processes auto;
+user  root root;
+worker_processes  auto;
 
-#error_log logs/error.log;
-#error_log logs/error.log notice;
-#error_log logs/error.log info;
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
 
-#pid logs/nginx.pid;
+#pid        logs/nginx.pid;
 google_perftools_profiles /dev/shm/nginx/tcmalloc/tcmalloc;
 
 events {
-    worker_connections 1024;
+    worker_connections  1024;
 }
 
 
 http {
-    include mime.types;
-    default_type application/octet-stream;
+    include       mime.types;
+    default_type  application/octet-stream;
 
-    #log_format main '\$remote_addr - \$remote_user [\$time_local] "\$request" '
-    # '\$status \$body_bytes_sent "\$http_referer" '
-    # '"\$http_user_agent" "\$http_x_forwarded_for"';
+    #log_format  main  '\$remote_addr - \$remote_user [\$time_local] "\$request" '
+    #                  '\$status \$body_bytes_sent "\$http_referer" '
+    #                  '"\$http_user_agent" "\$http_x_forwarded_for"';
 
-    #access_log logs/access.log main;
+    #access_log  logs/access.log  main;
 
-    sendfile on;
-    #tcp_nopush on;
+    sendfile        on;
+    #tcp_nopush     on;
 
-    #keepalive_timeout 0;
-    keepalive_timeout 65;
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
 
-    #gzip on;
+    #gzip  on;
 
-    include $nginx_config;
+    include       $nginx_config;
     #server {
-        #listen 80;
-        #server_name localhost;
+        #listen       80;
+        #server_name  localhost;
 
         #charset koi8-r;
 
-        #access_log logs/host.access.log main;
+        #access_log  logs/host.access.log  main;
 
         #location / {
-        # root html;
-        # index index.html index.htm;
+        #    root   html;
+        #    index  index.html index.htm;
         #}
 
-        #error_page 404 /404.html;
+        #error_page  404              /404.html;
 
         # redirect server error pages to the static page /50x.html
         #
-        #error_page 500 502 503 504 /50x.html;
+        #error_page   500 502 503 504  /50x.html;
         #location = /50x.html {
-        # root html;
+        #    root   html;
         #}
 
         # proxy the PHP scripts to Apache listening on 127.0.0.1:80
         #
         #location ~ \\.php\$ {
-        # proxy_pass http://127.0.0.1;
+        #    proxy_pass   http://127.0.0.1;
         #}
 
         # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
         #
         #location ~ \\.php\$ {
-        # root html;
-        # fastcgi_pass 127.0.0.1:9000;
-        # fastcgi_index index.php;
-        # fastcgi_param SCRIPT_FILENAME /scripts\$fastcgi_script_name;
-        # include fastcgi_params;
+        #    root           html;
+        #    fastcgi_pass   127.0.0.1:9000;
+        #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts\$fastcgi_script_name;
+        #    include        fastcgi_params;
         #}
 
         # deny access to .htaccess files, if Apache's document root
         # concurs with nginx's one
         #
         #location ~ /\\.ht {
-        # deny all;
+        #    deny  all;
         #}
     #}
 
@@ -2420,36 +2420,36 @@ http {
     # another virtual host using mix of IP-, name-, and port-based configuration
     #
     #server {
-    # listen 8000;
-    # listen somename:8080;
-    # server_name somename alias another.alias;
+    #    listen       8000;
+    #    listen       somename:8080;
+    #    server_name  somename  alias  another.alias;
 
-    # location / {
-    # root html;
-    # index index.html index.htm;
-    # }
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
     #}
 
 
     # HTTPS server
     #
     #server {
-    # listen 443 ssl;
-    # server_name localhost;
+    #    listen       443 ssl;
+    #    server_name  localhost;
 
-    # ssl_certificate cert.pem;
-    # ssl_certificate_key cert.key;
+    #    ssl_certificate      cert.pem;
+    #    ssl_certificate_key  cert.key;
 
-    # ssl_session_cache shared:SSL:1m;
-    # ssl_session_timeout 5m;
+    #    ssl_session_cache    shared:SSL:1m;
+    #    ssl_session_timeout  5m;
 
-    # ssl_ciphers HIGH:!aNULL:!MD5;
-    # ssl_prefer_server_ciphers on;
+    #    ssl_ciphers  HIGH:!aNULL:!MD5;
+    #    ssl_prefer_server_ciphers  on;
 
-    # location / {
-    # root html;
-    # index index.html index.htm;
-    # }
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
     #}
 
 }
@@ -2538,18 +2538,18 @@ cat >> $nginx_config<<EOF
     }
 EOF
         elif [ "${pretend_list[$i]}" == "2" ]; then
-            echo "root ${nginx_prefix}/html/${true_domain_list[$i]};" >> $nginx_config
-            echo "include ${nginx_prefix}/conf.d/nextcloud.conf;" >> $nginx_config
+            echo "    root ${nginx_prefix}/html/${true_domain_list[$i]};" >> $nginx_config
+            echo "    include ${nginx_prefix}/conf.d/nextcloud.conf;" >> $nginx_config
         elif [ "${pretend_list[$i]}" == "3" ]; then
             if [ $protocol_2 -ne 0 ]; then
-                echo "location / {" >> $nginx_config
-                echo "return 403;" >> $nginx_config
-                echo " }" >> $nginx_config
+                echo "    location / {" >> $nginx_config
+                echo "        return 403;" >> $nginx_config
+                echo "    }" >> $nginx_config
             else
-                echo "return 403;" >> $nginx_config
+                echo "    return 403;" >> $nginx_config
             fi
         elif [ "${pretend_list[$i]}" == "4" ]; then
-            echo "root ${nginx_prefix}/html/${true_domain_list[$i]};" >> $nginx_config
+            echo "    root ${nginx_prefix}/html/${true_domain_list[$i]};" >> $nginx_config
         else
 cat >> $nginx_config<<EOF
     location / {
@@ -2595,8 +2595,8 @@ cat >> $xray_config <<EOF
                 ],
 EOF
     fi
-    echo ' "decryption": "none",' >> $xray_config
-    echo ' "fallbacks": [' >> $xray_config
+    echo '                "decryption": "none",' >> $xray_config
+    echo '                "fallbacks": [' >> $xray_config
     if [ $protocol_3 -ne 0 ]; then
 cat >> $xray_config <<EOF
                     {
@@ -2634,7 +2634,7 @@ cat >> $xray_config <<EOF
                             "keyFile": "${nginx_prefix}/certs/${true_domain_list[$i]}.key",
                             "ocspStapling": 3600
 EOF
-        ((i==${#true_domain_list[@]}-1)) && echo " }" >> $xray_config || echo " }," >> $xray_config
+        ((i==${#true_domain_list[@]}-1)) && echo "                        }" >> $xray_config || echo "                        }," >> $xray_config
     done
 cat >> $xray_config <<EOF
                     ]
@@ -2642,24 +2642,24 @@ cat >> $xray_config <<EOF
             }
 EOF
     if [ $protocol_2 -ne 0 ]; then
-        echo ' },' >> $xray_config
-        echo ' {' >> $xray_config
-        echo ' "listen": "/dev/shm/xray/grpc.sock",' >> $xray_config
+        echo '        },' >> $xray_config
+        echo '        {' >> $xray_config
+        echo '            "listen": "/dev/shm/xray/grpc.sock",' >> $xray_config
         if [ $protocol_2 -eq 2 ]; then
-            echo ' "protocol": "vmess",' >> $xray_config
+            echo '            "protocol": "vmess",' >> $xray_config
         else
-            echo ' "protocol": "vless",' >> $xray_config
+            echo '            "protocol": "vless",' >> $xray_config
         fi
-        echo ' "settings": {' >> $xray_config
-        echo ' "clients": [' >> $xray_config
-        echo ' {' >> $xray_config
-        echo " \"id\": \"$xid_2\"" >> $xray_config
-        echo ' }' >> $xray_config
+        echo '            "settings": {' >> $xray_config
+        echo '                "clients": [' >> $xray_config
+        echo '                    {' >> $xray_config
+        echo "                        \"id\": \"$xid_2\"" >> $xray_config
+        echo '                    }' >> $xray_config
         if [ $protocol_2 -eq 2 ]; then
-            echo ' ]' >> $xray_config
+            echo '                ]' >> $xray_config
         else
-            echo ' ],' >> $xray_config
-            echo ' "decryption": "none"' >> $xray_config
+            echo '                ],' >> $xray_config
+            echo '                "decryption": "none"' >> $xray_config
         fi
 cat >> $xray_config <<EOF
             },
@@ -2672,24 +2672,24 @@ cat >> $xray_config <<EOF
 EOF
     fi
     if [ $protocol_3 -ne 0 ]; then
-        echo ' },' >> $xray_config
-        echo ' {' >> $xray_config
-        echo ' "listen": "@/dev/shm/xray/ws.sock",' >> $xray_config
+        echo '        },' >> $xray_config
+        echo '        {' >> $xray_config
+        echo '            "listen": "@/dev/shm/xray/ws.sock",' >> $xray_config
         if [ $protocol_3 -eq 2 ]; then
-            echo ' "protocol": "vmess",' >> $xray_config
+            echo '            "protocol": "vmess",' >> $xray_config
         else
-            echo ' "protocol": "vless",' >> $xray_config
+            echo '            "protocol": "vless",' >> $xray_config
         fi
-        echo ' "settings": {' >> $xray_config
-        echo ' "clients": [' >> $xray_config
-        echo ' {' >> $xray_config
-        echo " \"id\": \"$xid_3\"" >> $xray_config
-        echo ' }' >> $xray_config
+        echo '            "settings": {' >> $xray_config
+        echo '                "clients": [' >> $xray_config
+        echo '                    {' >> $xray_config
+        echo "                        \"id\": \"$xid_3\"" >> $xray_config
+        echo '                    }' >> $xray_config
         if [ $protocol_3 -eq 2 ]; then
-            echo ' ]' >> $xray_config
+            echo '                ]' >> $xray_config
         else
-            echo ' ],' >> $xray_config
-            echo ' "decryption": "none"' >> $xray_config
+            echo '                ],' >> $xray_config
+            echo '                "decryption": "none"' >> $xray_config
         fi
 cat >> $xray_config <<EOF
             },
@@ -2758,7 +2758,7 @@ update_cloudreve()
     local temp_cloudreve_status=0
     systemctl -q is-active cloudreve && temp_cloudreve_status=1
     systemctl stop cloudreve
-    if ! wget -O "$cloudreve_prefix/cloudreve.tar.gz" "https://github.com/cloudreve/Cloudreve/releases/download/${cloudreve_version}/cloudreve_${cloudreve_version}_linux_${machine}.tar. gz"; then
+    if ! wget -O "$cloudreve_prefix/cloudreve.tar.gz" "https://github.com/cloudreve/Cloudreve/releases/download/${cloudreve_version}/cloudreve_${cloudreve_version}_linux_${machine}.tar.gz"; then
         red "Failed to get Cloudreve!!"
         yellow "Press Enter to continue or Ctrl+c to terminate"
         read -s
@@ -2810,17 +2810,17 @@ install_init_cloudreve()
     update_cloudreve
     rm -rf /dev/shm/cloudreve
     local temp
-    temp="$("$cloudreve_prefix/cloudreve" | grep "Initial admin password:" | awk '{print $4}')"
+    temp="$("$cloudreve_prefix/cloudreve" | grep "初始管理员密码：" | awk '{print $4}')"
     sleep 1s
     systemctl start cloudreve
     systemctl enable cloudreve
     tyblue "------- Please open \"https://${domain_list[$1]}\" for Cloudreve initialization-------"
-    tyblue " 1. Login account"
-    purple "Initial administrator account: admin@cloudreve.org"
-    purple " $temp"
-    tyblue " 2. Avatar in the upper right corner -> Management Panel"
-    tyblue " 3. A dialog box will pop up \"OK site URL settings\" Select \"Change\""
-    tyblue " 4. Left parameter settings -> Registration and login -> New users are not allowed to register -> Pull down and click Save"
+    tyblue "  1. Login account"
+    purple "     Initial administrator account: admin@cloudreve.org"
+    purple "  $temp"
+    tyblue "  2. Avatar in the upper right corner -> Management Panel"
+    tyblue "  3. A dialog box will pop up \"OK site URL settings\" Select \"Change\""
+    tyblue "  4. Left parameter settings -> Registration and login -> New users are not allowed to register -> Pull down and click Save"
     sleep 15s
     echo -e "\\n\\n"
     tyblue "Press enter twice to continue..."
@@ -2834,7 +2834,7 @@ let_init_nextcloud()
 {
     echo -e "\\n\\n"
     yellow "Please open \"https://${domain_list[$1]}\" for Nextcloud initialization now:"
-    tyblue "1. Customize the username and password of the administrator"
+    tyblue " 1. Customize the username and password of the administrator"
     tyblue " 2. Select SQLite for database type"
     tyblue " 3. It is recommended not to tick \"Install recommended apps\", because it can be installed after entering"
     sleep 15s
@@ -2860,7 +2860,7 @@ print_share_link()
     echo
     tyblue "Share link:"
     if [ $protocol_1 -eq 1 ]; then
-        green "============ VLESS-TCP-TLS\\033[35m (do not go to CDN)\\033[32m ============"
+        green  "============ VLESS-TCP-TLS\\033[35m(Does not go to CDN)\\033[32m ============"
         for i in "${!domain_list[@]}"
         do
             if [ "${pretend_list[$i]}" == "1" ] || [ "${pretend_list[$i]}" == "2" ]; then
@@ -2869,7 +2869,7 @@ print_share_link()
                 tyblue "vless://${xid_1}@${ip}:443?security=tls&sni=${domain_list[$i]}&alpn=h2,http%2F1.1"
             fi
         done
-        green "============ VLESS-TCP-XTLS\\033[35m (does not go to CDN)\\033[32m ============"
+        green  "============ VLESS-TCP-XTLS\\033[35m(Does not go to CDN)\\033[32m ============"
         yellow "Linux/Android/Router:"
         for i in "${!domain_list[@]}"
         do
@@ -2890,26 +2890,26 @@ print_share_link()
         done
     fi
     if [ $protocol_2 -eq 1 ]; then
-        green "========== VLESS-gRPC-TLS \\033[35m (If the domain name has CDN resolution enabled, it will connect to the CDN, otherwise it will connect directly) \\033[32m ===== ======"
+        green  "=========== VLESS-gRPC-TLS \\033[35m(If the domain name has CDN resolution enabled, it will connect to the CDN, otherwise it will connect directly)\\033[32m ==========="
         for i in "${domain_list[@]}"
         do
             tyblue "vless://${xid_2}@${i}:443?type=grpc&security=tls&serviceName=${serviceName}&mode=multi&alpn=h2,http%2F1.1"
         done
     elif [ $protocol_2 -eq 2 ]; then
-        green "========== VMess-gRPC-TLS \\033[35m (If the domain name has CDN resolution enabled, it will connect to the CDN, otherwise it will connect directly) \\033[32m ===== ======"
+        green  "=========== VMess-gRPC-TLS \\033[35m(If the domain name has CDN resolution enabled, it will connect to the CDN, otherwise it will connect directly)\\033[32m ==========="
         for i in "${domain_list[@]}"
         do
             tyblue "vmess://${xid_2}@${i}:443?type=grpc&security=tls&serviceName=${serviceName}&mode=multi&alpn=h2,http%2F1.1"
         done
     fi
     if [ $protocol_3 -eq 1 ]; then
-        green "========== VLESS-WebSocket-TLS \\033[35m (If the domain name has CDN resolution enabled, it will connect to CDN, otherwise it will connect directly) \\033[32m ===== ======"
+        green  "=========== VLESS-WebSocket-TLS \\033[35m(If the domain name has CDN resolution enabled, it will connect to the CDN, otherwise it will connect directly)\\033[32m ==========="
         for i in "${domain_list[@]}"
         do
             tyblue "vless://${xid_3}@${i}:443?type=ws&security=tls&path=%2F${path#/}%3Fed=2048"
         done
     elif [ $protocol_3 -eq 2 ]; then
-        green "========== VMess-WebSocket-TLS \\033[35m (If the domain name has CDN resolution enabled, it will connect to CDN, otherwise it will connect directly) \\033[32m ===== ======"
+        green  "=========== VMess-WebSocket-TLS \\033[35m(If the domain name has CDN resolution enabled, it will connect to the CDN, otherwise it will connect directly)\\033[32m ==========="
         for i in "${domain_list[@]}"
         do
             tyblue "vmess://${xid_3}@${i}:443?type=ws&security=tls&path=%2F${path#/}%3Fed=2048"
@@ -2920,46 +2920,46 @@ print_config_info()
 {
     echo -e "\\n\\n\\n"
     if [ $protocol_1 -ne 0 ]; then
-        tyblue "--------------------- VLESS-TCP-XTLS/TLS (without CDN) --------------- ------"
-        tyblue "protocol (transmission protocol): \\033[33mvless"
-        purple " (V2RayN select\"Add [VLESS] server\";V2RayNG select\"Manual input [VLESS]\")"
-        tyblue "address (address): \\033[33m server ip"
-        purple " (Qv2ray:host)"
-        tyblue " port: \\033[33m443"
-        tyblue " id (user ID/UUID): \\033[33m${xid_1}"
-        tyblue "flow (flow control):"
-        tyblue "Use XTLS:"
-        tyblue "Linux/Android/Router:\033[33mxtls-rprx-splice\033[32m (recommended)\033[36m or \033[33mxtls-rprx-direct"
-        tyblue "other: \\033[33mxtls-rprx-direct"
-        tyblue "Use TLS: \\033[33mnull"
-        tyblue " encryption: \\033[33mnone"
-        tyblue " ---Transport/StreamSettings (underlying transport mode/stream settings)---"
-        tyblue " network (transmission method): \\033[33mtcp"
-        purple " (Shadowrocket transmission mode select none)"
-        tyblue " type (pretend type): \\033[33mnone"
-        purple " (Qv2ray:Protocol Settings-Type)"
-        tyblue "security (transport layer encryption): \033[33mxtls\033[36m or \033[33mtls \033[35m (this option will decide whether to use XTLS or TLS)"
-        purple " (V2RayN(G): underlying transport security; Qv2ray: TLS settings - security type)"
+        tyblue "--------------------- VLESS-TCP-XTLS/TLS (不走CDN) ---------------------"
+        tyblue " protocol             ：\\033[33mvless"
+        purple "  (V2RayN select \"Add [VLESS] server\";V2RayNG select \"Manual input [VLESS]\")"
+        tyblue " address              ：\\033[33mServer IP"
+        purple "  (Qv2ray:Host)"
+        tyblue " port                 ：\\033[33m443"
+        tyblue " id(User ID/UUID)     ：\\033[33m${xid_1}"
+        tyblue " flow                 ："
+        tyblue "                         Use XTLS ："
+        tyblue "                                    Linux/Android/router：\\033[33mxtls-rprx-splice\\033[32m(recommended)\\033[36mor\\033[33mxtls-rprx-direct"
+        tyblue "                                    other               ：\\033[33mxtls-rprx-direct"
+        tyblue "                         Use TLS  ：\\033[33mnull"
+        tyblue " encryption           ：\\033[33mnone"
+        tyblue " ---Transport/StreamSettings(Underlying transport method/stream settings)---"
+        tyblue "  network(transport method)    ：\\033[33mtcp"
+        purple "   (Shadowrocket transport methos select none)"
+        tyblue "  type(Camouflage)             ：\\033[33mnone"
+        purple "   (Qv2ray:Protocol set-type)"
+        tyblue "  security(Transfer layer encryption)          ：\\033[33mxtls\\033[36mor\\033[33mtls \\033[35m(This option will decide whether to use XTLS or TLS)"
+        purple "   (V2RayN(G):The underlying transmission safety; QV2Ray: TLS settings-security type)"
         if [ ${#domain_list[@]} -eq 1 ]; then
-            tyblue " serverName : \\033[33m${domain_list[*]}"
+            tyblue "  serverName                    ：\\033[33m${domain_list[*]}"
         else
-            tyblue " serverName : \\033[33m${domain_list[*]} \\033[35m(optional)"
+            tyblue "  serverName                    ：\\033[33m${domain_list[*]} \\033[35m(Optional)"
         fi
-        purple " (V2RayN(G):SNI;Qv2ray:TLS settings-server address;Shadowrocket:Peer name)"
-        tyblue "allowInsecure:\\033[33mfalse"
-        purple " (Qv2ray:TLS settings-allow insecure certificates (unchecked);Shadowrocket:allow insecure (off))"
-        tyblue "fingerprint:"
-        tyblue "using XTLS: \\033[33mnull"
-        tyblue " use TLS:\033[33mnull\033[36m/\033[33mchrome\033[32m(recommended)\033[36m/\033[33mfirefox\033[36m/\033 [33msafari"
-        purple " (this option determines whether to forge browser fingerprints, empty means no forgery)"
-        tyblue "alpn:"
-        tyblue "Fake browser fingerprint: this parameter does not take effect, you can set it at will"
-        tyblue "Do not forge browser fingerprints: if the fake website corresponding to the domain name filled in serverName is a network disk, set it to \\033[33mhttp/1.1\\033[36m, otherwise set it to \\033[33m empty\\033[36m or \\033[33mh2,http/1.1"
-        purple " (Qv2ray:TLS setting-ALPN) (Note that if Qv2ray wants to set alpn to h2,http/1.1, please fill in \"h2|http/1.1\")"
-        tyblue " ------------------------Other---------------------- "
-        tyblue "Mux (multiplexing): must be turned off when using XTLS; also recommended when not using XTLS"
-        purple " (V2RayN: Settings Page - Enable Mux Multiplexing)"
-        tyblue "------------------------------------------------ ------------------------"
+        purple "   (V2RayN(G):SNI;Qv2ray:TLS settings-server address; shadowrocket: peer name)"
+        tyblue "  allowInsecure                 ：\\033[33mfalse"
+        purple "   (Qv2ray:TLS settings-Allow insecure certificates (unchecked); shadowrocket: Allow insecure (off))"
+        tyblue "  fingerprint                   ："
+        tyblue "                                  Using XTLS ：\\033[33mnull"
+        tyblue "                                  Using TLS  ：\\033[33mnull\\033[36m/\\033[33mchrome\\033[32m(recommended)\\033[36m/\\033[33mfirefox\\033[36m/\\033[33msafari"
+        purple "                                           (This option determines whether the fingerprint of the browser is forged, and the empty represents do not forge)"
+        tyblue "  alpn                          ："
+        tyblue "                                  Forgery browser fingerprint      ：This parameter does not take effect, you can set it at will"
+        tyblue "                                  Do not forge browser fingerprints：The camouflage website corresponding to the domain name filled by serverName is set to\\033[33mhttp/1.1\\033[36mOtherwise, set it to\\033[33mnull\\033[36mor\\033[33mh2,http/1.1"
+        purple "   (Qv2ray:TLS settings -ALPN) (Note QV2Ray If you want to set ALPN to H2, HTTP/1.1, please fill in\"h2|http/1.1\")"
+        tyblue " ------------------------other-----------------------"
+        tyblue "  Mux(Multi -way reuse)         ：Use XTLS must be closed; it is recommended to close it without using XTLS"
+        purple "   (V2RayN:Set page-Rotate MUX multi-path reuse)"
+        tyblue "------------------------------------------------------------------------"
     fi
     if [ $protocol_2 -ne 0 ]; then
         echo
@@ -2973,98 +2973,98 @@ print_config_info()
             purple " (V2RayN select\"Add [VMess] server\";V2RayNG select\"Manually enter [Vmess]\")"
         fi
         if [ ${#domain_list[@]} -eq 1 ]; then
-            tyblue "address (address): \\033[33m${domain_list[*]}"
+            tyblue " address                 ：\\033[33m${domain_list[*]}"
         else
-            tyblue "address (address): \\033[33m${domain_list[*]} \\033[35m (optional)"
+            tyblue " address                 ：\\033[33m${domain_list[*]} \\033[35m(Optional)"
         fi
-        purple " (Qv2ray:host)"
-        tyblue " port: \\033[33m443"
-        tyblue " id(user ID/UUID): \\033[33m${xid_2}"
+        purple "  (Qv2ray:Host)"
+        tyblue " port(port)                  ：\\033[33m443"
+        tyblue " id(User ID/UUID)            ：\\033[33m${xid_2}"
         if [ $protocol_2 -eq 1 ]; then
-            tyblue "flow (flow control): \\033[33m empty"
-            tyblue " encryption: \\033[33mnone"
+            tyblue " flow                    ：\\033[33m空"
+            tyblue " encryption              ：\\033[33mnone"
         else
-            tyblue "security (encryption method): use CDN, recommend \\033[33mauto\\033[36m; do not use CDN, recommend \\033[33mnone"
-            purple " (Qv2ray:Security Options;Shadowrocket:Algorithms)"
+            tyblue " security(Encryption)    : CDN, recommended\\033[33mauto\\033[36m;Do not use CDN, recommended\\033[33mnone"
+            purple "  (Qv2ray:Safety options; shadowrocket: algorithm)"
         fi
-        tyblue " ---Transport/StreamSettings (underlying transport mode/stream settings)---"
-        tyblue " network (transmission method): \\033[33mgrpc"
-        tyblue "serviceName: \\033[33m${serviceName}"
-        tyblue "multiMode:\\033[33mtrue"
-        purple " (V2RayN(G) camouflage type (type) select multi"
-        tyblue "security (transport layer encryption): \\033[33mtls"
-        purple " (V2RayN(G): underlying transport security; Qv2ray: TLS settings - security type)"
-        tyblue " serverName : \\033[33mnull"
-        purple " (V2RayN(G): SNI and Masquerade Domain Name; Qv2ray: TLS Settings-Server Address; Shadowrocket: Peer Name)"
-        tyblue "allowInsecure:\\033[33mfalse"
-        purple " (Qv2ray:TLS settings-allow insecure certificates (unchecked);Shadowrocket:allow insecure (off))"
-        tyblue "alpn: \\033[33m empty \\033[36m or \\033[33mh2,http/1.1"
-        purple " (Qv2ray:TLS setting-ALPN) (Note that if Qv2ray wants to set alpn to h2,http/1.1, please fill in \"h2|http/1.1\")"
-        tyblue " ------------------------Other---------------------- "
-        tyblue "Mux (multiplexing): highly recommended to close"
-        purple " (V2RayN: Settings Page - Enable Mux Multiplexing)"
-        tyblue "------------------------------------------------ ------------------------"
+        tyblue " ---Transport/StreamSettings(Underlying transport method/flow settings)---"
+        tyblue "  network                       ：\\033[33mgrpc"
+        tyblue "  serviceName                   ：\\033[33m${serviceName}"
+        tyblue "  multiMode                     ：\\033[33mtrue"
+        purple "   (V2RayN(G)Camouflage (type) choose multi"
+        tyblue "  security                      ：\\033[33mtls"
+        purple "   (V2RayN(G):Power transmission safety;Qv2ray:TLS settings-security type)"
+        tyblue "  serverName                    ：\\033[33mnull"
+        purple "   (V2RayN(G):SNI and camouflage domain name;Qv2ray:TLS settings-server address;Shadowrocket:Peer name)"
+        tyblue "  allowInsecure                 ：\\033[33mfalse"
+        purple "   (Qv2ray:TLS settings-allows unsafe certificates (unchecked);Shadowrocket:Allow unsafe (checked))"
+        tyblue "  alpn                          ：\\033[33mnull\\033[36mor\\033[33mh2,http/1.1"
+        purple "   (Qv2ray:TLS settings -ALPN) (Note QV2ray If you want to set ALPN to h2,http/1.1, Please fill out\"h2|http/1.1\")"
+        tyblue " ------------------------other-----------------------"
+        tyblue "  Mux(Multi-path reuse)                 ：Strongly recommended to close"
+        purple "   (V2RayN:Set page-Rotate MUX multi-path reuse)"
+        tyblue "------------------------------------------------------------------------"
     fi
     if [ $protocol_3 -ne 0 ]; then
         echo
         if [ $protocol_3 -eq 1 ]; then
             tyblue "------------- VLESS-WebSocket-TLS (if there is a CDN, go to CDN, otherwise connect directly) -------------"
-            tyblue "protocol (transmission protocol): \\033[33mvless"
-            purple " (V2RayN select\"Add [VLESS] server\";V2RayNG select\"Manual input [VLESS]\")"
+            tyblue " protocol             ：\\033[33mvless"
+            purple "  (V2RayN select \"Add [VLESS] server\";V2RayNG select\"Manually enter [VLESS]\")"
         else
-            tyblue "------------- VMess-WebSocket-TLS (if there is CDN, go to CDN, otherwise connect directly) -------------"
-            tyblue "protocol (transmission protocol): \\033[33mvmess"
-            purple " (V2RayN select\"Add [VMess] server\";V2RayNG select\"Manually enter [Vmess]\")"
+            tyblue "------------- VMess-WebSocket-TLS (if there is a CDN, go to CDN, otherwise connect directly) -------------"
+            tyblue " protocol             ：\\033[33mvmess"
+            purple "  (V2RayN select \"Add [VMess] server\";V2RayNG select \"Manually enter [Vmess]\")"
         fi
         if [ ${#domain_list[@]} -eq 1 ]; then
-            tyblue "address (address): \\033[33m${domain_list[*]}"
+            tyblue " address              ：\\033[33m${domain_list[*]}"
         else
-            tyblue "address (address): \\033[33m${domain_list[*]} \\033[35m (optional)"
+            tyblue " address              ：\\033[33m${domain_list[*]} \\033[35m(Optional)"
         fi
-        purple " (Qv2ray:host)"
-        tyblue " port: \\033[33m443"
-        tyblue " id(user ID/UUID): \\033[33m${xid_3}"
+        purple "  (Qv2ray: host)"
+        tyblue " port                     ：\\033[33m443"
+        tyblue " id(User ID/UUID)         ：\\033[33m${xid_3}"
         if [ $protocol_3 -eq 1 ]; then
-            tyblue "flow (flow control): \\033[33m empty"
-            tyblue " encryption: \\033[33mnone"
+            tyblue " flow                 ：\\033[33mempty"
+            tyblue " encryption           ：\\033[33mnone"
         else
-            tyblue "security (encryption method): use CDN, recommend \\033[33mauto\\033[36m; do not use CDN, recommend \\033[33mnone"
-            purple " (Qv2ray:Security Options;Shadowrocket:Algorithms)"
+            tyblue " security(encryption) ：Using a CDN: \\033[33mauto\\033[36m; Not using hte CDN: \\033[33mnone"
+            purple "  (Qv2ray: Security Options;Shadowrocket: Algorithm)"
         fi
-        tyblue " ---Transport/StreamSettings (underlying transport mode/stream settings)---"
-        tyblue " network (transmission method): \\033[33mws"
-        purple " (Shadowrocket transmission mode select websocket)"
-        tyblue "path(path):\\033[33m${path}?ed=2048"
-        tyblue "Host:\\033[33mnull"
-        purple " (V2RayN(G): masquerading domain name; Qv2ray: protocol setting-request header)"
-        tyblue "security (transport layer encryption): \\033[33mtls"
-        purple " (V2RayN(G): underlying transport security; Qv2ray: TLS settings - security type)"
-        tyblue " serverName : \\033[33mnull"
-        purple " (V2RayN(G): SNI and Masquerade Domain Name; Qv2ray: TLS Settings-Server Address; Shadowrocket: Peer Name)"
-        tyblue "allowInsecure:\\033[33mfalse"
-        purple " (Qv2ray:TLS settings-allow insecure certificates (unchecked);Shadowrocket:allow insecure (off))"
-        tyblue " alpn : This parameter does not take effect and can be set at will"
-        purple " (Qv2ray:TLS setting-ALPN) (Note that if Qv2ray wants to set alpn to h2,http/1.1, please fill in \"h2|http/1.1\")"
-        tyblue " ------------------------Other---------------------- "
-        tyblue "Mux (multiplexing): recommended to close"
-        purple " (V2RayN: Settings Page - Enable Mux Multiplexing)"
-        tyblue "------------------------------------------------ ------------------------"
+        tyblue " ---Transport/StreamSettings---"
+        tyblue "  network                       ：\\033[33mws"
+        purple "   (Shadowrocket: Select WebSocket for transmission method)"
+        tyblue "  path                          ：\\033[33m${path}?ed=2048"
+        tyblue "  Host                          ：\\033[33mempty"
+        purple "   (V2RayN(G):Camouflage domain name;Qv2ray:Protocol setting-request header)"
+        tyblue "  security                      ：\\033[33mtls"
+        purple "   (V2RayN(G):Power transmission safety; Qv2ray:TLS settings-security type)"
+        tyblue "  serverName                    ：\\033[33mempty"
+        purple "   (V2RayN(G):SNI and camouflage domain name; Qv2ray:TLS settings-server address;Shadowrocket:Peer name)"
+        tyblue "  allowInsecure                 ：\\033[33mfalse"
+        purple "   (Qv2ray:TLS settings-allows unsafe certificates(unchecked);Shadowrocket:Allow unsafe (checked))"
+        tyblue "  alpn                          ：This parameter does not take effect, you can set it at will"
+        purple "   (Qv2ray:TLS settings -ALPN) (Note QV2Ray If you want to set ALPN to H2, HTTP/1.1, please fill in\"h2|http/1.1\")"
+        tyblue " ------------------------Other-----------------------"
+        tyblue "  Mux(Multiplexing)             ：Suggested checked"
+        purple "   (V2RayN:Settings Page - Enable Mux Multiplexing)"
+        tyblue "------------------------------------------------------------------------"
     fi
     echo
     ask_if "Generate share link? (y/n)" && print_share_link
     echo
-    yellow "About fingerprint and alpn, see: https://github.com/kirin10000/Xray-script#About tls handshake tls fingerprint and alpn"
+    yellow "About fingerprint and alpn, see: https://github.com/kirin10000/Xray-script#AboutTLSHandshakeTLSFingerprintAndALPN"
     echo
-    blue "To achieve Fullcone (NAT type open), the following conditions need to be met:"
-    blue " 1. Make sure the client core is Xray v1.3.0+"
-    blue " 2. If you are using Netch as client, please do not use mode [1] connection (can use mode [3] Bypass LAN )"
-    blue " 3. If the test system is Windows and you are using a transparent proxy or TUN/Bypass LAN, make sure the current network is set to a private network"
+    blue " To achieve Fullcone (NAT type open), the following conditions need to be met:"
+    blue "    1. Make sure the client core is Xray v1.3.0+"
+    blue "    2. If you are using Netch as client, please do not use mode [1] connection (can use mode [3] Bypass LAN )"
+    blue "    3. If the test system is Windows and you are using a transparent proxy or TUN/Bypass LAN, make sure the current network is set to a private network"
     echo
-    blue "To implement WebSocket 0-rtt, please upgrade the client core to Xray v1.4.0+"
+    blue " To implement WebSocket 0-rtt, please upgrade the client core to Xray v1.4.0+"
     echo
-    tyblue "Script last updated: 2021.09.10"
+    tyblue " Script last updated: 2021.09.10"
     echo
-    red "This script is only for communication and learning, please do not use this script to do illegal things. If you do illegal things outside the Internet, you will be punished by law!!!!"
+    red " This script is only for communication and learning, please do not use this script to do illegal things. If you do illegal things outside the Internet, you will be punished by law!!!!"
     tyblue " 2020.11"
 }
 
@@ -3121,9 +3121,9 @@ install_update_xray_tls_web()
                 use_existed_php=1
             fi
         elif [ $php_is_installed -eq 1 ]; then
-            tyblue "--------------- detected that php already exists---------------"
+            tyblue "--------------- Detected that php already exists---------------"
             tyblue " 1. Use existing php"
-            tyblue "2. Uninstall existing php and recompile and install"
+            tyblue " 2. Uninstall existing php and recompile and install"
             echo
             choice=""
             while [ "$choice" != "1" ] && [ "$choice" != "2" ]
@@ -3145,7 +3145,7 @@ install_update_xray_tls_web()
     elif [ $nginx_is_installed -eq 1 ]; then
         tyblue "---------------Detected that Nginx already exists---------------"
         tyblue " 1. Use existing Nginx"
-        tyblue "2. Uninstall existing Nginx and recompile and install"
+        tyblue " 2. Uninstall existing Nginx and recompile and install"
         echo
         choice=""
         while [ "$choice" != "1" ] && [ "$choice" != "2" ]
@@ -3158,8 +3158,8 @@ install_update_xray_tls_web()
     local temp_remove_cloudreve=1
     if [ $update -eq 0 ] && [ "${pretend_list[0]}" == "1" ] && [ $cloudreve_is_installed -eq 1 ]; then
         tyblue "----------------- Cloudreve already exists -----------------"
-        tyblue "1. Use existing Cloudreve"
-        tyblue "2. Uninstall and reinstall"
+        tyblue " 1. Use existing Cloudreve"
+        tyblue " 2. Uninstall and reinstall"
         echo
         red "Warning: Uninstalling Cloudreve will delete all files and user information on the network disk"
         choice=""
@@ -3278,7 +3278,7 @@ install_check_update_update_php()
     check_SELinux
     check_important_dependence_installed tzdata tzdata
     get_system_info
-    if (([ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ]) && ! version_ge "$systemVersion" "8" ) || ([ $release == "rhel" ] && ! version_ge "$systemVersion" "8") || ([ $release == "fedora" ] && ! version_ge "$systemVersion" "30") || ([ $release == "ubuntu " ] && ! version_ge "$systemVersion" "20.04") || ([ $release == "debian" ] && ! version_ge "$systemVersion" "11"); then
+    if (([ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ]) && ! version_ge "$systemVersion" "8" ) || ([ $release == "rhel" ] && ! version_ge "$systemVersion" "8") || ([ $release == "fedora" ] && ! version_ge "$systemVersion" "30") || ([ $release == "ubuntu" ] && ! version_ge "$systemVersion" "20.04") || ([ $release == "debian" ] && ! version_ge "$systemVersion" "11"); then
         red "The system version is too low to install php!"
         echo
         tyblue "Installing Nextcloud requires php to be installed"
@@ -3287,7 +3287,7 @@ install_check_update_update_php()
         yellow " 2. Debian 11+"
         yellow " 3. Other Debian 11+ based systems"
         yellow " 4. Red Hat Enterprise Linux 8+"
-        yellow "5. CentOS 8+"
+        yellow " 5. CentOS 8+"
         yellow " 6. Fedora 30+"
         yellow " 7. Oracle Linux 8+"
         yellow " 8. Other Red Hat 8+ based systems"
@@ -3301,7 +3301,7 @@ install_check_update_update_php()
         yellow " 2. Debian 11+"
         yellow " 3. Other Debian 11+ based systems"
         yellow " 4. Red Hat Enterprise Linux 8+"
-        yellow "5. CentOS 8+"
+        yellow " 5. CentOS 8+"
         yellow " 6. Fedora 30+"
         yellow " 7. Oracle Linux 8+"
         yellow " 8. Other Red Hat 8+ based systems"
@@ -3327,7 +3327,7 @@ install_check_update_update_php()
         systemctl -q is-active php-fpm && php_status=1
     else
         ask_update_script
-        tyblue "install php for running n extcloud network disk"
+        tyblue "install php for running nextcloud network disk"
         yellow "It may take 15-60 minutes to compile && install php"
         yellow "and php will occupy a certain amount of system resources, it is not recommended to use machines with memory < 512M"
         ! ask_if "Continue? (y/n)" && return 0
@@ -3499,7 +3499,7 @@ add_domain()
     for ((i=${#domain_list[@]}-1; i!=0;))
     do
         ((i--))
-        if [ "${domain_list[-1]}" == "${domain_list[$i]}" ] || [ "${domain_list[-1]}" == "${true_domain_list[$i]}" ] || [ "${true_domain_list[-1]}" == "${domain_list[$i]}" ] || [ "${true_domain_list[-1]}" == "${true_domain_list[$i] }" ]; then
+        if [ "${domain_list[-1]}" == "${domain_list[$i]}" ] || [ "${domain_list[-1]}" == "${true_domain_list[$i]}" ] || [ "${true_domain_list[-1]}" == "${domain_list[$i]}" ] || [ "${true_domain_list[-1]}" == "${true_domain_list[$i]}" ]; then
             red "Domain already exists!"
             return 1
         fi
@@ -3550,9 +3550,9 @@ delete_domain()
     for i in "${!domain_list[@]}"
     do
         if [ ${domain_config_list[$i]} -eq 1 ]; then
-            tyblue " $((i+1)).${domain_list[$i]} ${true_domain_list[$i]}"
+            tyblue " $((i+1)). ${domain_list[$i]} ${true_domain_list[$i]}"
         else
-            tyblue " $((i+1)).${domain_list[$i]}"
+            tyblue " $((i+1)). ${domain_list[$i]}"
         fi
     done
     yellow "0. do not delete"
@@ -3605,9 +3605,9 @@ change_pretend()
         for i in "${!domain_list[@]}"
         do
             if [ ${domain_config_list[$i]} -eq 1 ]; then
-                tyblue " $((i+1)).${domain_list[$i]} ${true_domain_list[$i]}"
+                tyblue " $((i+1)). ${domain_list[$i]} ${true_domain_list[$i]}"
             else
-                tyblue " $((i+1)).${domain_list[$i]}"
+                tyblue " $((i+1)). ${domain_list[$i]}"
             fi
         done
         yellow " 0. No modification"
@@ -3712,9 +3712,9 @@ change_xray_id()
     get_config_info
     local flag=""
     tyblue "-------------Please enter the id you want to modify-------------"
-    tyblue "1. TCP's id"
-    tyblue "2. id of gRPC"
-    tyblue "3. WebSocket id"
+    tyblue " 1. TCP"
+    tyblue " 2. gRPC"
+    tyblue " 3. WebSocket"
     echo
     while [[ ! "$flag" =~ ^([1-9][0-9]*)$ ]] || ((flag>3))
     do
@@ -3815,7 +3815,7 @@ simplify_system()
     check_important_dependence_installed "procps" "procps-ng"
     yellow "Warning:"
     tyblue " 1. This function may cause some VPS to fail to boot, please use it with caution"
-    tyblue "2. If something other than Xray-TLS+Web is deployed on the VPS, it may be deleted by mistake"
+    tyblue " 2. If something other than Xray-TLS+Web is deployed on the VPS, it may be deleted by mistake"
     ! ask_if "Do you want to continue?(y/n)" && return 0
     echo
     yellow "Hint: Before streamlining the system, please set the software source of apt/yum/dnf to http/ftp instead of https/ftps"
@@ -3832,14 +3832,14 @@ simplify_system()
         cp /etc/ssh/sshd_config sshd_config
     fi
     uninstall_firewall
-    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora " ] || [ $release == "other-redhat" ]; then
+    if [ $release == "centos" ] || [ $release == centos-stream ] || [ $release == oracle ] || [ $release == "rhel" ] || [ $release == "fedora" ] || [ $release == "other-redhat" ]; then
         local temp_backup=()
         local temp_important=('openssh-server' 'initscripts' 'tar')
         for i in "${temp_important[@]}"
         do
             rpm -q "$i" > /dev/null 2>&1 && temp_backup+=("$i")
         done
-        local temp_remove_list=('openssl' 'perl*' 'xz' 'libselinux-utils' 'zip' 'unzip' 'bzip2' 'wget' 'procps-ng' 'procps' 'iproute' 'dbus-glib' 'udisk* ' 'libudisk*' 'gdisk*' 'libblock*' '*-devel' 'nginx*')
+        local temp_remove_list=('openssl' 'perl*' 'xz' 'libselinux-utils' 'zip' 'unzip' 'bzip2' 'wget' 'procps-ng' 'procps' 'iproute' 'dbus-glib' 'udisk*' 'libudisk*' 'gdisk*' 'libblock*' '*-devel' 'nginx*')
         #libxmlb
         if ! $redhat_package_manager -y remove "${temp_remove_list[@]}"; then
             for i in "${temp_remove_list[@]}"
@@ -3856,10 +3856,10 @@ simplify_system()
         local temp_important=('apt-utils' 'whiptail' 'initramfs-tools' 'isc-dhcp-client' 'netplan.io' 'openssh-server' 'network-manager')
         for i in "${temp_important[@]}"
         do
-            LANG="en_US.UTF-8" LANGUAGE="en_US:en" dpkg -s "$i" 2>/dev/null | grep -qi 'status[ '$'\t]*:[ '$'\t ]*install[ '$'\t]*ok[ '$'\t]*installed[ '$'\t]*$' && temp_backup+=("$i")
+            LANG="en_US.UTF-8" LANGUAGE="en_US:en" dpkg -s "$i" 2>/dev/null | grep -qi 'status[ '$'\t]*:[ '$'\t]*install[ '$'\t]*ok[ '$'\t]*installed[ '$'\t]*$' && temp_backup+=("$i")
         done
         temp_backup+=($(dpkg --list 'grub*' | grep '^[ '$'\t]*ii[ '$'\t]' | awk '{print $2}'))
-        local temp_remove_list=('cron' 'anacron' '^cups' '^foomatic' 'openssl' 'snapd' 'kdump-tools' 'flex' 'make' 'automake' '^cloud-init' 'pkg-config' ' ^gcc-[1-9][0-9]*$' '^cpp-[1-9][0-9]*$' 'curl' '^python' '^libpython' 'dbus' 'at' 'open-iscsi' 'rsyslog' 'acpid' 'libnetplan0' 'glib-networking-common' 'bcache-tools' '^bind([0-9]|-|$)' 'lshw' '^thermald' '^ libdbus' '^libevdev' '^libupower' 'readline-common' '^libreadline' 'xz-utils' 'selinux-utils' 'wget' 'zip' 'unzip' 'bzip2' 'finalrd' '^cryptsetup' '^ libplymouth''^lib.*-dev$' 'perl' '^perl-modules' '^x11' '^libx11' '^qemu' '^xdg-' '^libglib' '^libicu' '^libxml' '^liburing ' '^libisc' '^libdns' '^isc-' 'net-tools' 'xxd' 'xkb-data' 'lsof' '^task' '^usb' '^libusb' '^doc' '^libwrap' '^libtext' '^libmagic' '^libpci' '^liblocale' '^keyboard' '^libuni[^s]' '^libpipe' 'man-db' '^manpages' '^liblock' '^liblog' ' ^libxapian' '^libpsl' '^libpap' '^libgs[0-9]' '^libpaper' '^postfix' '^nginx' '^libnginx')^libx11' '^qemu' '^xdg-' '^libglib' '^libicu' '^libxml' '^liburing' '^libisc' '^libdns' '^isc-' 'net-tools' 'xxd' ' xkb-data' 'lsof' '^task' '^usb' '^libusb' '^doc' '^libwrap' '^libtext' '^libmagic' '^libpci' '^liblocale' '^keyboard' '^libuni [^s]' '^libpipe' 'man-db' '^manpages' '^liblock' '^liblog' '^libxapian' '^libpsl' '^libpap' '^libgs[0-9]' '^libpaper ' '^postfix' '^nginx' '^libnginx')^libx11' '^qemu' '^xdg-' '^libglib' '^libicu' '^libxml' '^liburing' '^libisc' '^libdns' '^isc-' 'net-tools' 'xxd' ' xkb-data' 'lsof' '^task' '^usb' '^libusb' '^doc' '^libwrap' '^libtext' '^libmagic' '^libpci' '^liblocale' '^keyboard' '^libuni [^s]' '^libpipe' 'man-db' '^manpages' '^liblock' '^liblog' '^libxapian' '^libpsl' '^libpap' '^libgs[0-9]' '^libpaper ' '^postfix' '^nginx' '^libnginx')'net-tools' 'xxd' 'xkb-data' 'lsof' '^task' '^usb' '^libusb' '^doc' '^libwrap' '^libtext' '^libmagic' '^libpci' '^ liblocale' '^keyboard' '^libuni[^s]' '^libpipe' 'man-db' '^manpages' '^liblock' '^liblog' '^libxapian' '^libpsl' '^libpap' '^libgs [0-9]' '^libpaper' '^postfix' '^nginx' '^libnginx')'net-tools' 'xxd' 'xkb-data' 'lsof' '^task' '^usb' '^libusb' '^doc' '^libwrap' '^libtext' '^libmagic' '^libpci' '^ liblocale' '^keyboard' '^libuni[^s]' '^libpipe' 'man-db' '^manpages' '^liblock' '^liblog' '^libxapian' '^libpsl' '^libpap' '^libgs [0-9]' '^libpaper' '^postfix' '^nginx' '^libnginx')^liblock' '^liblog' '^libxapian' '^libpsl' '^libpap' '^libgs[0-9]' '^libpaper' '^postfix' '^nginx' '^libnginx')^liblock' '^liblog' '^libxapian' '^libpsl' '^libpap' '^libgs[0-9]' '^libpaper' '^postfix' '^nginx' '^libnginx')
+        local temp_remove_list=('cron' 'anacron' '^cups' '^foomatic' 'openssl' 'snapd' 'kdump-tools' 'flex' 'make' 'automake' '^cloud-init' 'pkg-config' '^gcc-[1-9][0-9]*$' '^cpp-[1-9][0-9]*$' 'curl' '^python' '^libpython' 'dbus' 'at' 'open-iscsi' 'rsyslog' 'acpid' 'libnetplan0' 'glib-networking-common' 'bcache-tools' '^bind([0-9]|-|$)' 'lshw' '^thermald' '^libdbus' '^libevdev' '^libupower' 'readline-common' '^libreadline' 'xz-utils' 'selinux-utils' 'wget' 'zip' 'unzip' 'bzip2' 'finalrd' '^cryptsetup' '^libplymouth' '^lib.*-dev$' 'perl' '^perl-modules' '^x11' '^libx11' '^qemu' '^xdg-' '^libglib' '^libicu' '^libxml' '^liburing' '^libisc' '^libdns' '^isc-' 'net-tools' 'xxd' 'xkb-data' 'lsof' '^task' '^usb' '^libusb' '^doc' '^libwrap' '^libtext' '^libmagic' '^libpci' '^liblocale' '^keyboard' '^libuni[^s]' '^libpipe' 'man-db' '^manpages' '^liblock' '^liblog' '^libxapian' '^libpsl' '^libpap' '^libgs[0-9]' '^libpaper' '^postfix' '^nginx' '^libnginx')
         #'^libp11' '^libtasn' '^libkey' '^libnet'
         if ! $debian_package_manager -y --auto-remove purge "${temp_remove_list[@]}"; then
             $debian_package_manager -y -f --no-install-recommends install
@@ -3905,7 +3905,7 @@ change_dns()
 {
     red "Attention!!"
     red "1. Some cloud service providers (such as Alibaba Cloud) use the local server as the source of software packages. After modifying the dns, you need to change the source!!"
-    red "If you don't understand, then please modify the dns after the installation is complete, and do not reinstall after the modification"
+    red "   If you don't understand, then please modify the dns after the installation is complete, and do not reinstall after the modification"
     red "2. The original dns may be restored after the Ubuntu system restarts"
     tyblue "This operation will modify the dns server to 1.1.1.1 and 1.0.0.1 (cloudflare public dns)"
     ! ask_if "Do you want to continue?(y/n)" && return 0
@@ -3924,71 +3924,71 @@ change_dns()
 start_menu()
 {
     local xray_status
-    [ $xray_is_installed -eq 1 ] && xray_status="\\033[32m installed" || xray_status="\\033[31m not installed"
-    systemctl -q is-active xray && xray_status+=" \\033[32m running" || xray_status+=" \\033[31m not running"
+    [ $xray_is_installed -eq 1 ] && xray_status="\\033[32mInstalled" || xray_status="\\033[31mNot Installed"
+    systemctl -q is-active xray && xray_status+="                \\033[32mRunning" || xray_status+="                \\033[31mNot running"
     local nginx_status
-    [ $nginx_is_installed -eq 1 ] && nginx_status="\\033[32m installed" || nginx_status="\\033[31m not installed"
-    systemctl -q is-active nginx && nginx_status+=" \\033[32m running" || nginx_status+=" \\033[31m not running"
+    [ $nginx_is_installed -eq 1 ] && nginx_status="\\033[32mInstalled" || nginx_status="\\033[31mNot Installed"
+    systemctl -q is-active nginx && nginx_status+="                \\033[32mRunning" || nginx_status+="                \\033[31mNot running"
     local php_status
-    [ $php_is_installed -eq 1 ] && php_status="\\033[32m installed" || php_status="\\033[31m not installed"
-    systemctl -q is-active php-fpm && php_status+=" \\033[32m running" || php_status+=" \\033[31m not running"
+    [ $php_is_installed -eq 1 ] && php_status="\\033[32mInstalled" || php_status="\\033[31mNot Installed"
+    systemctl -q is-active php-fpm && php_status+="                \\033[32mRunning" || php_status+="                \\033[31mNot running"
     local cloudreve_status
-    [ $cloudreve_is_installed -eq 1 ] && cloudreve_status="\\033[32m installed" || cloudreve_status="\\033[31m not installed"
-    systemctl -q is-active cloudreve && cloudreve_status+=" \\033[32m running" || cloudreve_status+=" \\033[31m not running"
-    tyblue "--------------- Xray-TLS+Web build/manage script--------------- ---------"
+    [ $cloudreve_is_installed -eq 1 ] && cloudreve_status="\\033[32mInstalled" || cloudreve_status="\\033[31mNot Installed"
+    systemctl -q is-active cloudreve && cloudreve_status+="                \\033[32mRunning" || cloudreve_status+="                \\033[31mNot running"
+    tyblue "------------------------ Xray-TLS+Web Build/Management Script------------------------"
     echo
-    tyblue "Xray: ${xray_status}"
+    tyblue "           Xray   ：           ${xray_status}"
     echo
-    tyblue "nginx: ${nginx_status}"
+    tyblue "           Nginx  ：           ${nginx_status}"
     echo
-    tyblue "php: ${php_status}"
+    tyblue "           php    ：           ${php_status}"
     echo
-    tyblue "Cloudreve: ${cloudreve_status}"
+    tyblue "        Cloudreve ：           ${cloudreve_status}"
     echo
-    tyblue "Official website: https://github.com/kirin10000/Xray-script"
+    tyblue "       Official website：https://github.com/mmsaffari/Xray-script"
     echo
-    tyblue "--------------------------------------Notes------------ ----------------------"
+    tyblue "--------------------------------------Notes-----------------------------------"
     yellow " 1. This script requires a domain name that resolves to this server"
     tyblue " 2. This script takes a long time to install, it is recommended to read before installation: "
-    tyblue "https://github.com/kirin10000/Xray-script#Installation time description"
-    green " 3. It is recommended to use this script on a clean system (VPS console - reset system)"
-    tyblue "------------------------------------------------ ----------------------------"
+    tyblue "    https://github.com/kirin10000/Xray-script#InstallationTimeDescription"
+    green  " 3. It is recommended to use this script on a clean system (VPS console - reset system)"
+    tyblue "-------------------------------------------------_----------------------------"
     echo
     echo
     tyblue "----------install/update/uninstall-------"
     if [ $is_installed -eq 0 ]; then
-        green " 1. Install Xray-TLS+Web"
+    	green "  1. Install Xray-TLS+Web"
     else
-        green " 1. Reinstall Xray-TLS+Web"
+        green "  1. Reinstall Xray-TLS+Web"
     fi
-    purple " Process: [Update system components]->[Install bbr]->[Install php]->Install Nginx->Install Xray->Apply for a certificate->Configuration file->[Install/Configure Cloudreve]"
-    green " 2. Update Xray-TLS+Web"
-    purple " Process: update script->[update system components]->[update bbr]->[update php]->[update Nginx]->update Xray->update certificate->update configuration file->[update Cloudreve] "
-    tyblue "3. Check for updates/update scripts"
-    tyblue "4. Update system components"
-    tyblue "5. install/check for updates/update bbr"
-    purple "Includes: bbr2/bbrplus/bbr magic revision/violent bbr magic revision/sharp speed"
-    tyblue "6. install/check for updates/update php"
-    tyblue "7. Check for Updates/Update Nginx"
-    tyblue "8. Update Cloudreve"
-    tyblue "9. Update Xray"
-    red " 10. Uninstall Xray-TLS+Web"
-    red " 11. Uninstall php"
-    red " 12. Uninstall Cloudreve"
+    purple "     Process: [Update system components]->[Install bbr]->[Install php]->Install Nginx->Install Xray->Apply for a certificate->Configuration file->[Install/Configure Cloudreve]"
+    green  "  2. Update Xray-TLS+Web"
+    purple "     Process: update script->[update system components]->[update bbr]->[update php]->[update Nginx]->update Xray->update certificate->update configuration file->[update Cloudreve] "
+    tyblue "  3. Check for updates/update scripts"
+    tyblue "  4. Update system components"
+    tyblue "  5. install/check for updates/update bbr"
+    purple "     Includes: bbr2/bbrplus/bbr magic revision/violent bbr magic revision/sharp speed"
+    tyblue "  6. install/check for updates/update php"
+    tyblue "  7. Check for Updates/Update Nginx"
+    tyblue "  8. Update Cloudreve"
+    tyblue "  9. Update Xray"
+    red    " 10. Uninstall Xray-TLS+Web"
+    red    " 11. Uninstall php"
+    red    " 12. Uninstall Cloudreve"
     echo
     tyblue " -------------- start/stop --------------"
     tyblue " 13. Start/Restart Xray-TLS+Web"
-    tyblue "14. Stop Xray-TLS+Web"
+    tyblue " 14. Stop Xray-TLS+Web"
     echo
     tyblue "----------------Management----------------"
     tyblue " 15. View configuration information"
-    tyblue "16. Reset Domain"
-    purple "will delete all domain name configurations. Xray cannot be started due to the wrong domain name input during the installation process. This option can be used to fix it"
-    tyblue "17. Add Domain"
+    tyblue " 16. Reset Domain"
+    purple "     will delete all domain name configurations. Xray cannot be started due to the wrong domain name input during the installation process. This option can be used to fix it"
+    tyblue " 17. Add Domain"
     tyblue " 18. Delete Domain"
     tyblue " 19. Modify the type of fake website"
-    tyblue "20. Reinstall Cloudreve"
-    purple "All files and account information of Cloudreve network disk will be deleted. If the administrator password is forgotten, this option can be used to restore"
+    tyblue " 20. Reinstall Cloudreve"
+    purple "     All files and account information of Cloudreve network disk will be deleted. If the administrator password is forgotten, this option can be used to restore"
     tyblue " 21. Modify the transmission protocol"
     tyblue " 22. Modify id (user ID/UUID)"
     tyblue " 23. Modify the serviceName of gRPC"
@@ -3996,11 +3996,11 @@ start_menu()
     echo
     tyblue "----------------Other----------------"
     tyblue " 25. Streamlined System"
-    purple "Remove unnecessary system components, this feature can still be used even if Xray-TLS+Web is installed"
+    purple "     Remove unnecessary system components, this feature can still be used even if Xray-TLS+Web is installed"
     tyblue " 26. Try to fix the backspace key not working"
-    purple "Some ssh tools (such as Xshell) may have this kind of problem"
+    purple "     Some ssh tools (such as Xshell) may have this kind of problem"
     tyblue " 27. Modify dns"
-    yellow "0. Exit script"
+    yellow "  0. Exit script"
     echo
     echo
     local choice=""
@@ -4073,7 +4073,7 @@ start_menu()
         install_update_xray
         green "Xray update complete!"
     elif [ $choice -eq 10 ]; then
-        ! ask_if "Are you sure you want to delete?(y/n)" && return 0
+        ! ask_if "确定要删除吗?(y/n)" && return 0
         [ "$redhat_package_manager" == "yum" ] && check_important_dependence_installed "" "yum-utils"
         check_important_dependence_installed ca-certificates ca-certificates
         check_important_dependence_installed curl curl
@@ -4086,21 +4086,21 @@ start_menu()
         green "Delete complete!"
     elif [ $choice -eq 11 ]; then
         get_config_info
-        [ $is_installed -eq 1 ] && check_need_php && red "A domain is using php" && return 1
-        ! ask_if "Are you sure you want to delete php?(y/n)" && return 0
-        remove_php && green "Remove complete!"
+        [ $is_installed -eq 1 ] && check_need_php && red "Domain name is using PHP" && return 1
+        ! ask_if "Are you sure you want to delete PHP?(y/n)" && return 0
+        remove_php && green "Deleted!"
     elif [ $choice -eq 12 ]; then
         get_config_info
-        [ $is_installed -eq 1 ] && check_need_cloudreve && red "A domain is using Cloudreve" && return 1
-        ! ask_if "Are you sure you want to delete cloudreve?(y/n)" && return 0
-        remove_cloudreve && green "Remove complete!"
+        [ $is_installed -eq 1 ] && check_need_cloudreve && red "There is a domain name is using CloudReve" && return 1
+        ! ask_if "Are you sure to delete CloudReve?delete CloudReve?(y/n)" && return 0
+        remove_cloudreve && green "Deleted!"
     elif [ $choice -eq 13 ]; then
         restart_xray_tls_web
     elif [ $choice -eq 14 ]; then
         systemctl stop xray nginx
         [ $php_is_installed -eq 1 ] && systemctl stop php-fpm
         [ $cloudreve_is_installed -eq 1 ] && systemctl stop cloudreve
-        green "stopped!"
+        green "已停止！"
     elif [ $choice -eq 15 ]; then
         get_config_info
         print_config_info
